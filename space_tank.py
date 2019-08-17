@@ -1,11 +1,13 @@
 from time import sleep
+import datetime
+
 import random
 
 ###################################
 # Graphics imports, constants and structures
 ###################################
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 # this is the size of ONE of our matrixes. 
 matrix_rows = 64 
@@ -35,6 +37,8 @@ matrix = RGBMatrix(options = options)
 # Main code 
 ###################################
 icon_size = 40
+
+fnt = ImageFont.truetype("Arial_Bold.ttf",14)
 
 background = Image.open("andr_small.jpeg")
 background.convert("RGBA")
@@ -77,8 +81,19 @@ try:
     # paste in our ship
     screen.paste(icon_image,(icon_x,icon_y),mask)
 
-    # display image
+
     screen = screen.convert("RGB")
+    screen_draw = ImageDraw.Draw(screen)
+
+    # draw text on top
+    currentDT = datetime.datetime.now()
+    time_string = currentDT.strftime("%H:%M:%S")
+
+    # do some math to center our time string
+    time_size = fnt.getsize(time_string)
+    time_x = (total_columns - time_size[0])/2
+    time_y = (total_rows - time_size[1])/2 
+    screen_draw.text((time_x,time_y),time_string, fill = (255,0,0,), font = fnt)
 
     matrix.SetImage(screen,0,0)
 
