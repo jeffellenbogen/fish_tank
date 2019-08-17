@@ -1,5 +1,5 @@
-# Used in main loop
 from time import sleep
+import random
 
 ###################################
 # Graphics imports, constants and structures
@@ -36,9 +36,9 @@ matrix = RGBMatrix(options = options)
 ###################################
 icon_size = 40
 
-screen = Image.open("andr_small.jpeg")
-screen.convert("RGBA")
-screen = screen.resize((total_columns,total_rows))
+background = Image.open("andr_small.jpeg")
+background.convert("RGBA")
+background = background.resize((total_columns,total_rows))
 
 icon_image = Image.open("tie-fighter-01.jpg")
 icon_image = icon_image.convert("RGBA")
@@ -62,17 +62,34 @@ for item in icon_data:
     print "opaque"
 mask.putdata(mask_data)
 
-screen.paste(icon_image,(10,10),mask)
-#screen.paste(icon_image,(10,10))
+icon_x = total_columns
+icon_y = random.randint(0,total_columns-icon_size)
 
-screen = screen.convert("RGB")
-
-matrix.SetImage(screen, 0, 0)
+screen = Image.new("RGBA",(total_columns,total_rows))
 
 try:
   print("Press CTRL-C to stop")
   while True:
-    sleep(100)
+
+    #restore background
+    screen.paste(background,(0,0))
+    
+    # paste in our ship
+    screen.paste(icon_image,(icon_x,icon_y),mask)
+
+    # display image
+    screen = screen.convert("RGB")
+
+    matrix.SetImage(screen,0,0)
+
+    # update our location for next time
+    icon_x = icon_x - 1
+    if (icon_x < (0 - icon_size)):
+      icon_x = total_columns
+      icon_y = random.randint(0,total_columns-icon_size)
+
+    sleep(.1)
+
 except KeyboardInterrupt:
   exit(0)
 
