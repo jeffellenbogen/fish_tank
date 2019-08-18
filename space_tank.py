@@ -88,6 +88,10 @@ try:
     # draw text on top
     currentDT = datetime.datetime.now()
     time_string = currentDT.strftime("%H:%M:%S")
+    '''How can we add the current date in the form Day-of-week, Month, Day-of-Month, Year
+    Also how can we adjust for the Colorado Time Zone?
+    Does this datetime.datetime.now pull from an internet time source or the local time on the Rasp Pi/Computer?
+    How do we adjust for daylight savings?'''
 
     # do some math to center our time string
     time_size = fnt.getsize(time_string)
