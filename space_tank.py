@@ -106,7 +106,7 @@ try:
     day_y = time_y + day_vertical_offset
 
     screen_draw.text((time_x,time_y),time_string, fill = (255,0,0,), font = fnt)
-    screen_draw.text((day_x, day_y),day_of_week, fill = (255,255,255,), font = fnt)
+    screen_draw.text((day_x, day_y),day_of_week, fill = (255,255,255,), font = fnt2)
     matrix.SetImage(screen,0,0)
 
     # update our location for next time
