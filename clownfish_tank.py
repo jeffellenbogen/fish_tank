@@ -84,11 +84,11 @@ screen = Image.new("RGBA",(total_columns,total_rows))
 def clownfishDirectionChooser():
   clownfish_direction_chooser = random.randint(0,2)
   if clownfish_direction_chooser == 0:
-    return -1
     print "swim left"
+    return -1
   else: 
-    return 1
     print "swim right"
+    return 1
 
 #############################################
 # Main loop
