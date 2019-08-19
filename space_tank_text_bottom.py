@@ -106,23 +106,23 @@ try:
     day_of_week_size = fnt.getsize(day_of_week)
     date_string_size = fnt.getsize(date_string)
 
-    time_x = (total_columns - time_size[0])/2
+    #time_x = (total_columns - time_size[0])/2
     #time_y = (total_rows - time_size[1])/2 
     
-    day_x = (total_columns - day_of_week_size[0])/2
+    #day_x = (total_columns - day_of_week_size[0])/2
     #day_vertical_offset = -40
     #day_y = time_y + day_vertical_offset
 
-    date_x = (total_columns - date_string_size[0])/2
+    #date_x = (total_columns - date_string_size[0])/2
     #date_vertical_offset = -17
     #date_y = time_y + date_vertical_offset
 
     edge_offset = 10
-    text_spacing = 1
+    text_spacing = 4
 
     screen_draw.text((edge_offset,total_rows - edge_offset),time_string, fill = (219,4,216), font = fnt)
-    screen_draw.text((edge_offset + time_x + text_spacing, total_rows - edge_offset),day_of_week, fill = (255,255,255), font = fnt)
-    screen_draw.text((edge_offset + time_x + text_spacing + day_x, total_rows - edge_offset),date_string, fill = (245,245,66), font = fnt)
+    screen_draw.text((edge_offset + time_size[0]+ text_spacing, total_rows - edge_offset),day_of_week, fill = (255,255,255), font = fnt)
+    screen_draw.text((edge_offset + time_size[0] + text_spacing + day_of_week_size[0], total_rows - edge_offset),date_string, fill = (245,245,66), font = fnt)
     matrix.SetImage(screen,0,0)
 
     # update our location for next time
