@@ -97,7 +97,7 @@ try:
 
     # do some math to center our time string
     time_size = fnt.getsize(time_string)
-    day_of_week_size = fnt.getsize(day_of_week)
+    day_of_week_size = fnt2.getsize(day_of_week)
     time_x = (total_columns - time_size[0])/2
     time_y = (total_rows - time_size[1])/2 
     
