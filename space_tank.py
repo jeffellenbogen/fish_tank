@@ -1,5 +1,6 @@
 from time import sleep
 import datetime
+from pytz import timezone
 
 import random
 
@@ -87,9 +88,10 @@ try:
     screen_draw = ImageDraw.Draw(screen)
 
     # draw text on top
-    currentDT = datetime.datetime.now()
-    time_string = currentDT.strftime("%I:%M:%S:%p")
-    day_of_week = currentDT.strftime("%A")
+    currentDT = datetime.datetime.now(timezone('UTC'))
+    currentDT_Mountain = currentDT.astimezone(timezone('US/Mountain'))
+    time_string = currentDT_Mountain.strftime("%I:%M:%S:%p")
+    day_of_week = currentDT_Mountain.strftime("%A")
     '''How can we add the current date in the form Day-of-week, Month, Day-of-Month, Year
     Also how can we adjust for the Colorado Time Zone?
     Does this datetime.datetime.now pull from an internet time source or the local time on the Rasp Pi/Computer?
