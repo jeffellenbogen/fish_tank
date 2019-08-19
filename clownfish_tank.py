@@ -129,9 +129,9 @@ try:
 
     # update our location for next time
     icon_x = icon_x - 1
-    if (icon_x < (0 - icon_size)):
+    if (icon_x < (0 - icon_width)):
       icon_x = total_columns
-      icon_y = random.randint(0,total_columns-icon_size)
+      icon_y = random.randint(0,total_rows-icon_height)
 
     sleep(.1)
 
