@@ -96,10 +96,16 @@ try:
 
     # do some math to center our time string
     time_size = fnt.getsize(time_string)
+    day_of_week_size = fnt.getsize(day_of_week)
     time_x = (total_columns - time_size[0])/2
     time_y = (total_rows - time_size[1])/2 
+    
+    day_x = (total_columns - day_of_week_size[0])/2
+    day_vertical_offset = 20
+    day_y = time_y + day_vertical_offset
+
     screen_draw.text((time_x,time_y),time_string, fill = (255,0,0,), font = fnt)
-    screen_draw.text((time_x,time_y+20),day_of_week, fill = (0,0,255,), font = fnt)
+    screen_draw.text((day_x, day_y),day_of_week, fill = (255,255,255,), font = fnt)
     matrix.SetImage(screen,0,0)
 
     # update our location for next time
