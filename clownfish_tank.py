@@ -73,7 +73,7 @@ for item in icon_data:
 mask.putdata(mask_data)
 
 icon_x = total_columns
-icon_y = random.randint(0,total_rows-icon_size)
+icon_y = random.randint(0,total_rows-icon_height)
 
 screen = Image.new("RGBA",(total_columns,total_rows))
 
