@@ -92,7 +92,7 @@ try:
     # draw text on top
     currentDT = datetime.datetime.now(timezone('UTC'))
     currentDT_TZadjusted = currentDT.astimezone(timezone('US/Mountain'))
-    time_string = currentDT_TZadjusted.strftime("%I:%M:%S:%p")
+    time_string = currentDT_TZadjusted.strftime("%I:%M:%S %p")
     day_of_week = currentDT_TZadjusted.strftime("%A")
     date_string = currentDT_TZadjusted.strftime("%B %d, %Y")
     '''How can we add the current date in the form Day-of-week, Month, Day-of-Month, Year
