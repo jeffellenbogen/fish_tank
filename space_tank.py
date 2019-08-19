@@ -116,7 +116,7 @@ try:
     date_vertical_offset = -17
     date_y = time_y + date_vertical_offset
 
-    screen_draw.text((time_x,time_y),time_string, fill = (115,4,219), font = fnt)
+    screen_draw.text((time_x,time_y),time_string, fill = (219,4,216), font = fnt)
     screen_draw.text((day_x, day_y),day_of_week, fill = (255,255,255), font = fnt2)
     screen_draw.text((date_x, date_y),date_string, fill = (245,245,66), font = fnt)
     matrix.SetImage(screen,0,0)
