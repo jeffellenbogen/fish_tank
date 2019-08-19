@@ -85,8 +85,10 @@ def clownfishDirectionChooser():
   clownfish_direction_chooser = random.randint(0,2)
   if clownfish_direction_chooser == 0:
     return -1
+    print "swim left"
   else: 
     return 1
+    print "swim right"
 
 #############################################
 # Main loop
@@ -144,10 +146,15 @@ try:
 
     # update our location for next time
     icon_x = icon_x + clownfish_direction
-    if (icon_x < (0 - icon_width)) & clownfish_direction == -1 | (icon_x > (0 + icon_width)) & clownfish_direction == 1:
+    if (icon_x < (0 - icon_width)) & clownfish_direction == -1:
       icon_x = total_columns
       icon_y = random.randint(0,total_rows-icon_height)
-      clownfish_direction_chooser()
+      clownfish_direction = clownfishDirectionChooser()
+    elif (icon_x > (0 + icon_width)) & clownfish_direction == 1:
+      icon_x = 0
+      icon_y = random.randint(0,total_rows-icon_height)
+      clownfish_direction = clownfishDirectionChooser()    
+
 
     sleep(.1)
 
