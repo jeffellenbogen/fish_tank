@@ -77,6 +77,21 @@ icon_y = random.randint(0,total_rows-icon_height)
 
 screen = Image.new("RGBA",(total_columns,total_rows))
 
+
+#############################################
+# Clownfish direction chooser
+#############################################
+def clownfishDirectionChooser():
+  clownfish_direction_chooser = random.randint(1)
+  if clownfish_direction_chooser == 0:
+    return -1
+  else: 
+    return 1
+
+#############################################
+# Main loop
+#############################################
+clownfish_direction = clownfish_direction_chooser()
 try:
   print("Press CTRL-C to stop")
   while True:
@@ -128,10 +143,11 @@ try:
     matrix.SetImage(screen,0,0)
 
     # update our location for next time
-    icon_x = icon_x - 1
-    if (icon_x < (0 - icon_width)):
+    icon_x = icon_x + clownfish_direction
+    if (icon_x < (0 - icon_width)) & clownfish_direction == -1 | (icon_x > (0 + icon_width)) & clownfish_direction == 1:
       icon_x = total_columns
       icon_y = random.randint(0,total_rows-icon_height)
+      clownfish_direction_chooser()
 
     sleep(.1)
 
