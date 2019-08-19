@@ -88,7 +88,7 @@ try:
 
     # draw text on top
     currentDT = datetime.datetime.now()
-    time_string = currentDT.strftime("%H:%M:%S")
+    time_string = currentDT.strftime("%I:%M:%S:%p")
     day_of_week = currentDT.strftime("%A")
     '''How can we add the current date in the form Day-of-week, Month, Day-of-Month, Year
     Also how can we adjust for the Colorado Time Zone?
