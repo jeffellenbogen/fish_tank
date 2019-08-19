@@ -118,7 +118,7 @@ try:
     #date_y = time_y + date_vertical_offset
 
     edge_offset_x = 3
-    edge_offset_y = 12
+    edge_offset_y = 13
     text_spacing = 4
 
     screen_draw.text((edge_offset_x,total_rows - edge_offset_y * 2),time_string, fill = (219,4,216), font = fnt2)
