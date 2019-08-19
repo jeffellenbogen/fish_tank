@@ -82,7 +82,7 @@ screen = Image.new("RGBA",(total_columns,total_rows))
 # Clownfish direction chooser
 #############################################
 def clownfishDirectionChooser():
-  clownfish_direction_chooser = random.randint(1)
+  clownfish_direction_chooser = random.randint(0,2)
   if clownfish_direction_chooser == 0:
     return -1
   else: 
