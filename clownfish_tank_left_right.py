@@ -181,7 +181,7 @@ try:
     # update our location for next time
     icon_x = icon_x + clownfish_direction
     if clownfish_direction == -1:
-      if icon_x < (0 - icon_width):
+      if icon_x < -icon_width:
         clownfish_direction = clownfishDirectionChooser() 
         if clownfish_direction == -1:
           icon_x = total_columns
@@ -189,12 +189,12 @@ try:
           icon_x = -icon_width
         icon_y = random.randint(0,total_rows-icon_height)
     else:
-      if icon_x > total_columns + icon_width:
+      if icon_x > total_columns:
         clownfish_direction = clownfishDirectionChooser() 
         if clownfish_direction == -1:
           icon_x = total_columns
         else: 
-          icon_x = icon_width
+          icon_x = -icon_width
         icon_y = random.randint(0,total_rows-icon_height)
     sleep(.1)
 
