@@ -40,8 +40,9 @@ matrix = RGBMatrix(options = options)
 ###################################
 icon_size = 40
 
-fnt = ImageFont.truetype("Arial_Bold.ttf",14)
-fnt2 = ImageFont.truetype("Arial_Bold.ttf",20)
+fnt = ImageFont.truetype("Arial_Bold.ttf",12)
+fnt2 = ImageFont.truetype("Arial_Bold.ttf",16)
+fnt3 = ImageFont.truetype("Arial_Bold.ttf",24)
 
 
 background = Image.open("andr_small.jpeg")
@@ -103,7 +104,7 @@ try:
     # do some math to center our time string
     time_size = fnt.getsize(time_string)
     day_of_week_size = fnt2.getsize(day_of_week)
-    date_string_size = fnt.getsize(date_string)
+    date_string_size = fnt3.getsize(date_string)
 
     time_x = (total_columns - time_size[0])/2
     time_y = (total_rows - time_size[1])/2 
@@ -118,7 +119,7 @@ try:
 
     screen_draw.text((time_x,time_y),time_string, fill = (219,4,216), font = fnt)
     screen_draw.text((day_x, day_y),day_of_week, fill = (255,255,255), font = fnt2)
-    screen_draw.text((date_x, date_y),date_string, fill = (245,245,66), font = fnt)
+    screen_draw.text((date_x, date_y),date_string, fill = (245,245,66), font = fnt3)
     matrix.SetImage(screen,0,0)
 
     # update our location for next time
