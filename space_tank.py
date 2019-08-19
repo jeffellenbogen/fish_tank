@@ -40,9 +40,9 @@ matrix = RGBMatrix(options = options)
 ###################################
 icon_size = 40
 
-fnt = ImageFont.truetype("Arial_Bold.ttf",12)
-fnt2 = ImageFont.truetype("Arial_Bold.ttf",16)
-fnt3 = ImageFont.truetype("Arial_Bold.ttf",24)
+fnt = ImageFont.truetype("Arial_Bold.ttf",14)
+fnt2 = ImageFont.truetype("Arial_Bold.ttf",20)
+fnt3 = ImageFont.truetype("Arial_Bold.ttf",12)
 
 
 background = Image.open("andr_small.jpeg")
