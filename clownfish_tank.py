@@ -150,7 +150,7 @@ try:
       icon_x = total_columns
       icon_y = random.randint(0,total_rows-icon_height)
       clownfish_direction = clownfishDirectionChooser()
-    elif (icon_x > (0 + icon_width)) & clownfish_direction == 1:
+    elif (icon_x > (total_columns + icon_width)) & clownfish_direction == 1:
       icon_x = 0
       icon_y = random.randint(0,total_rows-icon_height)
       clownfish_direction = clownfishDirectionChooser()    
