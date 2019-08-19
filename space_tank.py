@@ -42,7 +42,7 @@ icon_size = 40
 
 fnt = ImageFont.truetype("Arial_Bold.ttf",14)
 fnt2 = ImageFont.truetype("Arial_Bold.ttf",20)
-fnt3 = ImageFont.truetype("Arial_Bold.ttf",12)
+fnt3 = ImageFont.truetype("Arial_Bold.ttf",16)
 
 
 background = Image.open("andr_small.jpeg")
