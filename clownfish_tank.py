@@ -46,7 +46,7 @@ fnt2 = ImageFont.truetype("Arial_Bold.ttf",12)
 fnt3 = ImageFont.truetype("Arial_Bold.ttf",16)
 
 
-background = Image.open("reef_bgrd.jpg")
+background = Image.open("reef_bgrd_dark_bottom.jpg")
 background.convert("RGBA")
 background = background.resize((total_columns,total_rows))
 
