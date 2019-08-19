@@ -88,6 +88,7 @@ try:
     # draw text on top
     currentDT = datetime.datetime.now()
     time_string = currentDT.strftime("%H:%M:%S")
+    day_of_week = currentDT.strftime("%A")
     '''How can we add the current date in the form Day-of-week, Month, Day-of-Month, Year
     Also how can we adjust for the Colorado Time Zone?
     Does this datetime.datetime.now pull from an internet time source or the local time on the Rasp Pi/Computer?
@@ -98,7 +99,7 @@ try:
     time_x = (total_columns - time_size[0])/2
     time_y = (total_rows - time_size[1])/2 
     screen_draw.text((time_x,time_y),time_string, fill = (255,0,0,), font = fnt)
-
+    screen_draw.text((time_x,time_y+20),day_of_week, fill = (0,0,255,), font = fnt)
     matrix.SetImage(screen,0,0)
 
     # update our location for next time
