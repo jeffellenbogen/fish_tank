@@ -43,6 +43,7 @@ icon_size = 40
 fnt = ImageFont.truetype("Arial_Bold.ttf",14)
 fnt2 = ImageFont.truetype("Arial_Bold.ttf",20)
 
+
 background = Image.open("andr_small.jpeg")
 background.convert("RGBA")
 background = background.resize((total_columns,total_rows))
@@ -90,9 +91,10 @@ try:
 
     # draw text on top
     currentDT = datetime.datetime.now(timezone('UTC'))
-    currentDT_Mountain = currentDT.astimezone(timezone('US/Pacific'))
-    time_string = currentDT_Mountain.strftime("%I:%M:%S:%p")
-    day_of_week = currentDT_Mountain.strftime("%A")
+    currentDT_TZadjusted = currentDT.astimezone(timezone('US/Mountain'))
+    time_string = currentDT_TZadjusted.strftime("%I:%M:%S:%p")
+    day_of_week = currentDT_TZadjusted.strftime("%A")
+    date_string = currentDT_TZadjusted.strftime("%B %m, %Y")
     '''How can we add the current date in the form Day-of-week, Month, Day-of-Month, Year
     Also how can we adjust for the Colorado Time Zone?
     Does this datetime.datetime.now pull from an internet time source or the local time on the Rasp Pi/Computer?
@@ -101,15 +103,22 @@ try:
     # do some math to center our time string
     time_size = fnt.getsize(time_string)
     day_of_week_size = fnt2.getsize(day_of_week)
+    date_string_size = fnt.getsize(date_string)
+
     time_x = (total_columns - time_size[0])/2
     time_y = (total_rows - time_size[1])/2 
     
     day_x = (total_columns - day_of_week_size[0])/2
-    day_vertical_offset = -30
+    day_vertical_offset = -40
     day_y = time_y + day_vertical_offset
+
+    date_x = (total_columns - date_string_size[0])/2
+    date_vertical_offset = -15
+    date_y = time_y + date_vertical_offset
 
     screen_draw.text((time_x,time_y),time_string, fill = (255,0,0,), font = fnt)
     screen_draw.text((day_x, day_y),day_of_week, fill = (255,255,255,), font = fnt2)
+    screen_draw.text((date_x, date_y),date_string, fill = (0,255,255,), font = fnt)
     matrix.SetImage(screen,0,0)
 
     # update our location for next time
