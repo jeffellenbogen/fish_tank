@@ -38,8 +38,8 @@ matrix = RGBMatrix(options = options)
 ###################################
 # Main code 
 ###################################
-icon_width = 80
-icon_height = 50
+icon_width = 40
+icon_height = 25
 
 fnt = ImageFont.truetype("Arial_Bold.ttf",10)
 fnt2 = ImageFont.truetype("Arial_Bold.ttf",12)
