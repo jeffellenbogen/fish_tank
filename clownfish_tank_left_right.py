@@ -92,6 +92,7 @@ def clownfishDirectionChooser():
   global icon_width
   global icon_image
   global Image
+  global mask
 
   clownfish_direction_chooser = random.randint(1,10)
   if clownfish_direction_chooser % 2 == 0:
