@@ -94,7 +94,7 @@ try:
     currentDT_TZadjusted = currentDT.astimezone(timezone('US/Mountain'))
     time_string = currentDT_TZadjusted.strftime("%I:%M:%S:%p")
     day_of_week = currentDT_TZadjusted.strftime("%A")
-    date_string = currentDT_TZadjusted.strftime("%B %m, %Y")
+    date_string = currentDT_TZadjusted.strftime("%B %d, %Y")
     '''How can we add the current date in the form Day-of-week, Month, Day-of-Month, Year
     Also how can we adjust for the Colorado Time Zone?
     Does this datetime.datetime.now pull from an internet time source or the local time on the Rasp Pi/Computer?
