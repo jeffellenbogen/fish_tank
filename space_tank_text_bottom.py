@@ -120,9 +120,9 @@ try:
     edge_offset = 5
     text_spacing = 5
 
-    screen_draw.text((edge_offset,total_rows- edge_offset),time_string, fill = (219,4,216), font = fnt)
-    screen_draw.text((edge_offset+time_size+text_spacing, total_rows - edge_offset),day_of_week, fill = (255,255,255), font = fnt)
-    screen_draw.text((edge_offset+time_size+text_spacing * 2 + day_of_week_size, total_rows - edge_offset),date_string, fill = (245,245,66), font = fnt)
+    screen_draw.text((edge_offset,total_rows - edge_offset),time_string, fill = (219,4,216), font = fnt)
+    screen_draw.text((edge_offset + time_size + text_spacing, total_rows - edge_offset),day_of_week, fill = (255,255,255), font = fnt)
+    screen_draw.text((edge_offset + time_size + text_spacing * 2 + day_of_week_size, total_rows - edge_offset),date_string, fill = (245,245,66), font = fnt)
     matrix.SetImage(screen,0,0)
 
     # update our location for next time
