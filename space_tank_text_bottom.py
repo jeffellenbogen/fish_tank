@@ -118,7 +118,7 @@ try:
     #date_y = time_y + date_vertical_offset
 
     edge_offset = 10
-    text_spacing = 5
+    text_spacing = 2
 
     screen_draw.text((edge_offset,total_rows - edge_offset),time_string, fill = (219,4,216), font = fnt)
     screen_draw.text((edge_offset + time_x + text_spacing, total_rows - edge_offset),day_of_week, fill = (255,255,255), font = fnt)
