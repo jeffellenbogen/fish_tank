@@ -40,7 +40,7 @@ matrix = RGBMatrix(options = options)
 ###################################
 icon_size = 40
 
-fnt = ImageFont.truetype("Arial_Bold.ttf",10)
+fnt = ImageFont.truetype("Arial_Bold.ttf",8)
 fnt2 = ImageFont.truetype("Arial_Bold.ttf",20)
 fnt3 = ImageFont.truetype("Arial_Bold.ttf",16)
 
@@ -117,7 +117,7 @@ try:
     #date_vertical_offset = -17
     #date_y = time_y + date_vertical_offset
 
-    edge_offset = 5
+    edge_offset = 10
     text_spacing = 5
 
     screen_draw.text((edge_offset,total_rows - edge_offset),time_string, fill = (219,4,216), font = fnt)
