@@ -123,7 +123,7 @@ try:
 
     screen_draw.text((edge_offset_x,total_rows - edge_offset_y * 2),time_string, fill = (219,4,216), font = fnt2)
     screen_draw.text((edge_offset_x, total_rows - edge_offset_y),day_of_week, fill = (255,255,255), font = fnt)
-    screen_draw.text((edge_offset_x + day_of week_size[0] + text_spacing, total_rows - edge_offset_y),date_string, fill = (245,245,66), font = fnt)
+    screen_draw.text((edge_offset_x + day_of_week_size[0] + text_spacing, total_rows - edge_offset_y),date_string, fill = (245,245,66), font = fnt)
     matrix.SetImage(screen,0,0)
 
     # update our location for next time
