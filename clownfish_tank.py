@@ -50,7 +50,7 @@ background = Image.open("reef_bgrd.jpg")
 background.convert("RGBA")
 background = background.resize((total_columns,total_rows))
 
-icon_image = Image.open("clownfish.jpg")
+icon_image = Image.open("clownfish_left.jpg")
 icon_image = icon_image.convert("RGBA")
 icon_image = icon_image.resize((icon_width, icon_height))
 
@@ -64,7 +64,7 @@ icon_data = icon_image.getdata()
 mask_data = []
 for item in icon_data:
   print item
-  if item[0] <= 10 and item[1] >= 245 and item[2] <= 10:
+  if item[0] <= 20 and item[1] >= 235 and item[2] <= 20:
     mask_data.append(0)
     print "transparent"
   else:
