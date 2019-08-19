@@ -10,12 +10,12 @@ from rgbmatrix import RGBMatrix, RGBMatrixOptions
 from PIL import Image, ImageDraw, ImageFont
 
 # this is the size of ONE of our matrixes. 
-matrix_rows = 64 
-matrix_columns = 64 
+matrix_rows = 32
+matrix_columns = 32 
 
 # how many matrixes stacked horizontally and vertically 
-matrix_horizontal = 1 
-matrix_vertical = 1
+matrix_horizontal = 5 
+matrix_vertical = 3
 
 total_rows = matrix_rows * matrix_vertical
 total_columns = matrix_columns * matrix_horizontal
