@@ -122,7 +122,7 @@ def clownfishDirectionChooser():
     icon_image = icon_image.convert("RGBA")
     icon_image = icon_image.resize((icon_width, icon_height))
 
-    mask = Image.new("R", (icon_width,icon_height))
+    mask = Image.new("L", (icon_width,icon_height))
     icon_data = icon_image.getdata()
     mask_data = []
     for item in icon_data:
