@@ -91,7 +91,7 @@ def clownfishDirectionChooser():
 #############################################
 # Main loop
 #############################################
-clownfish_direction = clownfish_direction_chooser()
+clownfish_direction = clownfishDirectionChooser()
 try:
   print("Press CTRL-C to stop")
   while True:
