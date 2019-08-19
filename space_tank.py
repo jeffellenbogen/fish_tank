@@ -102,7 +102,7 @@ try:
     time_y = (total_rows - time_size[1])/2 
     
     day_x = (total_columns - day_of_week_size[0])/2
-    day_vertical_offset = -20
+    day_vertical_offset = -30
     day_y = time_y + day_vertical_offset
 
     screen_draw.text((time_x,time_y),time_string, fill = (255,0,0,), font = fnt)
