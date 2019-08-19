@@ -116,7 +116,7 @@ def clownfishDirectionChooser():
     print "swim left"
     return -1
   else: 
-    icon_x = 0
+    icon_x = -icon_width
     icon_y = random.randint(0,total_rows-icon_height)
     icon_image = Image.open("clownfish_right.jpg")
     icon_image = icon_image.convert("RGBA")
@@ -185,7 +185,7 @@ try:
         if clownfish_direction == -1:
           icon_x = total_columns
         else: 
-          icon_x = 0
+          icon_x = -icon_width
         icon_y = random.randint(0,total_rows-icon_height)
     else:
       if icon_x > total_columns + icon_width:
@@ -193,7 +193,7 @@ try:
         if clownfish_direction == -1:
           icon_x = total_columns
         else: 
-          icon_x = 0
+          icon_x = icon_width
         icon_y = random.randint(0,total_rows-icon_height)
     sleep(.1)
 
