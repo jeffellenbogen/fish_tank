@@ -184,7 +184,7 @@ try:
     seconds = currentDT_TZadjusted.strftime("%S")
 
     if seconds == 5: 
-      print ("5 seconds!")
+      print "5 seconds!"
 
     time_size = fnt2.getsize(time_string)
     day_of_week_size = fnt.getsize(day_of_week)
