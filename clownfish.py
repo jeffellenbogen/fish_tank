@@ -57,8 +57,8 @@ icon_image = icon_image.convert("RGBA")
 icon_image = icon_image.resize((icon_width, icon_height))
 
 icon_image2 = Image.open("seaTurtle.jpg")
-icon_image2 = icon_image.convert("RGBA")
-icon_image2 = icon_image.resize((icon_width2, icon_height2))
+icon_image2 = icon_image2.convert("RGBA")
+icon_image2 = icon_image2.resize((icon_width2, icon_height2))
 turtleStatus = False
 
 # now that we have our image, we want to make a transparency mask.
