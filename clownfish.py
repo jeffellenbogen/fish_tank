@@ -211,7 +211,7 @@ try:
       print "Seed a turtle now!"
       turtleStatus = True
       icon_x2 = -icon_width2
-      icon_y2 = random.randint(0,total_rows-icon_height)
+      icon_y2 = random.randint(0,total_rows-icon_height2)
 
     # update our seaTurtle location for next time
     icon_x2 = icon_x2 + 1
