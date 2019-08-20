@@ -76,6 +76,8 @@ for item in icon_data:
     mask_data.append(255)
     print "opaque"
 mask.putdata(mask_data)
+icon_x = total_columns
+icon_y = random.randint(0,total_rows-icon_height)
 
 
 mask2 = Image.new("L", (icon_width2,icon_height2))
@@ -89,11 +91,6 @@ for item in icon_data2:
   else:
     mask_data.append(255)
     print "opaque"
-
-mask.putdata(mask_data)
-icon_x = total_columns
-icon_y = random.randint(0,total_rows-icon_height)
-
 mask2.putdata(mask_data2)
 icon_x2 = total_columns
 icon_y2 = random.randint(0,total_rows-icon_height)
