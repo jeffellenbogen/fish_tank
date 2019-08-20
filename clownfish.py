@@ -186,7 +186,7 @@ try:
     date_string = currentDT_TZadjusted.strftime("%B %d, %Y")
     seconds = currentDT_TZadjusted.strftime("%S")
 
-    if seconds = "5": 
+    if seconds == "5": 
       print ("5 seconds!")
 
     time_size = fnt2.getsize(time_string)
