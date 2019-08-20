@@ -59,6 +59,7 @@ icon_image = icon_image.resize((icon_width, icon_height))
 icon_image2 = Image.open("seaTurtle.jpg")
 icon_image2 = icon_image.convert("RGBA")
 icon_image2 = icon_image.resize((icon_width2, icon_height2))
+turtleStatus = False
 
 # now that we have our image, we want to make a transparency mask.
 # start by looking at each pixel, and if it's green, make the mask
@@ -78,6 +79,7 @@ for item in icon_data:
 mask.putdata(mask_data)
 icon_x = total_columns
 icon_y = random.randint(0,total_rows-icon_height)
+
 
 
 mask2 = Image.new("L", (icon_width2,icon_height2))
@@ -201,8 +203,10 @@ try:
     #########################################
     # Start turtle from right to left at 5 seconds after the minute
     #########################################
-    if currentDT_TZadjusted.second == 5: 
+    if currentDT_TZadjusted.second == 5 & turtleStatus == False: 
       print "Seed a turtle now!"
+      turtleStatus = True
+      
 
 
 
