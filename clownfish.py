@@ -71,7 +71,7 @@ icon_data = icon_image.getdata()
 mask_data = []
 for item in icon_data:
   print item
-  if item[0] <= 50 and item[1] >= 245 and item[2] <= 50:
+  if item[0] <= 10 and item[1] >= 245 and item[2] <= 10:
     mask_data.append(0)
     print "transparent"
   else:
@@ -88,7 +88,7 @@ icon_data2 = icon_image2.getdata()
 mask_data2 = []
 for item in icon_data2:
   print item
-  if item[0] >= 253 and item[1] <= 10 and item[2] <= 10:
+  if item[0] >= 250 and item[1] <= 50 and item[2] <= 50:
     mask_data2.append(0)
     print "transparent"
   else:
