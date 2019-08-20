@@ -205,9 +205,9 @@ try:
     matrix.SetImage(screen,0,0)
 
     #########################################
-    # Start turtle from right to left at 5 seconds after the minute
+    # Start turtle from right to left at 30 seconds after the minute
     #########################################
-    if (seconds == 30 & turtleStatus == False): 
+    if ((seconds == 30) & (turtleStatus == False)): 
       print "Seed a turtle now!"
       turtleStatus = True
       icon_x2 = -icon_width2
