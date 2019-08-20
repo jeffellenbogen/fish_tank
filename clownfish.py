@@ -60,6 +60,7 @@ icon_image2 = Image.open("seaTurtle.jpg")
 icon_image2 = icon_image2.convert("RGBA")
 icon_image2 = icon_image2.resize((icon_width2, icon_height2))
 turtleStatus = False
+turtleSpeed = 2
 
 # now that we have our image, we want to make a transparency mask.
 # start by looking at each pixel, and if it's green, make the mask
@@ -214,7 +215,7 @@ try:
       icon_y2 = random.randint(0,total_rows-icon_height2)
 
     # update our seaTurtle location for next time
-    icon_x2 = icon_x2 + 1
+    icon_x2 = icon_x2 + turtleSpeed
 
     if icon_x2 > total_columns:
       turtleStatus = False
