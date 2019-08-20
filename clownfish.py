@@ -1,8 +1,6 @@
 from time import sleep
 import datetime
 from pytz import timezone
-
-
 import random
 
 ###################################
@@ -41,6 +39,9 @@ matrix = RGBMatrix(options = options)
 icon_width = 40
 icon_height = 25
 
+icon_width2 = 48
+icon_height2 = 30
+
 fnt = ImageFont.truetype("Arial_Bold.ttf",10)
 fnt2 = ImageFont.truetype("Arial_Bold.ttf",12)
 fnt3 = ImageFont.truetype("Arial_Bold.ttf",16)
@@ -51,11 +52,13 @@ background.convert("RGBA")
 background = background.resize((total_columns,total_rows))
 
 
-
-
 icon_image = Image.open("clownfish_left.jpg")
 icon_image = icon_image.convert("RGBA")
 icon_image = icon_image.resize((icon_width, icon_height))
+
+icon_image2 = Image.open("seaTurtle.jpg")
+icon_image2 = icon_image.convert("RGBA")
+icon_image2 = icon_image.resize((icon_width2, icon_height2))
 
 # now that we have our image, we want to make a transparency mask.
 # start by looking at each pixel, and if it's green, make the mask
@@ -74,8 +77,27 @@ for item in icon_data:
     print "opaque"
 mask.putdata(mask_data)
 
+
+mask2 = Image.new("L", (icon_width2,icon_height2))
+icon_data2 = icon_image2.getdata()
+mask_data2 = []
+for item in icon_data2:
+  print item
+  if item[0] >= 245 and item[1] <= 10 and item[2] <= 10:
+    mask_data.append(0)
+    print "transparent"
+  else:
+    mask_data.append(255)
+    print "opaque"
+
+mask.putdata(mask_data)
 icon_x = total_columns
 icon_y = random.randint(0,total_rows-icon_height)
+
+mask2.putdata(mask_data2)
+icon_x2 = total_columns
+icon_y2 = random.randint(0,total_rows-icon_height)
+
 
 screen = Image.new("RGBA",(total_columns,total_rows))
 
@@ -149,7 +171,7 @@ try:
     #restore background
     screen.paste(background,(0,0))
     
-    # paste in our ship
+    # paste in our clownfish
     screen.paste(icon_image,(icon_x,icon_y),mask)
 
 
@@ -162,7 +184,10 @@ try:
     time_string = currentDT_TZadjusted.strftime("%I:%M:%S %p")
     day_of_week = currentDT_TZadjusted.strftime("%A")
     date_string = currentDT_TZadjusted.strftime("%B %d, %Y")
+    seconds = currentDT_TZadjusted.strftime("%S")
 
+    if seconds = "5": 
+      print ("5 seconds!")
 
     time_size = fnt2.getsize(time_string)
     day_of_week_size = fnt.getsize(day_of_week)
