@@ -39,8 +39,8 @@ matrix = RGBMatrix(options = options)
 icon_width = 40
 icon_height = 25
 
-icon_width2 = 48
-icon_height2 = 30
+icon_width2 = 80
+icon_height2 = 50
 
 fnt = ImageFont.truetype("Arial_Bold.ttf",10)
 fnt2 = ImageFont.truetype("Arial_Bold.ttf",12)
@@ -189,7 +189,7 @@ try:
     day_of_week = currentDT_TZadjusted.strftime("%A")
     date_string = currentDT_TZadjusted.strftime("%B %d, %Y")
     seconds = int(currentDT_TZadjusted.strftime("%S"))
-    print seconds
+    
 
     time_size = fnt2.getsize(time_string)
     day_of_week_size = fnt.getsize(day_of_week)
