@@ -87,7 +87,7 @@ icon_data2 = icon_image2.getdata()
 mask_data2 = []
 for item in icon_data2:
   print item
-  if item[0] >= 245 and item[1] <= 10 and item[2] <= 10:
+  if item[0] >= 253 and item[1] <= 10 and item[2] <= 10:
     mask_data2.append(0)
     print "transparent"
   else:
@@ -207,7 +207,7 @@ try:
     #########################################
     # Start turtle from right to left at 30 seconds after the minute
     #########################################
-    if ((seconds == 30) & (turtleStatus == False)): 
+    if ((seconds % 30 == 0) & (turtleStatus == False)): 
       print "Seed a turtle now!"
       turtleStatus = True
       icon_x2 = -icon_width2
