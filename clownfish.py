@@ -173,6 +173,9 @@ try:
     # paste in our clownfish
     screen.paste(icon_image,(icon_x,icon_y),mask)
 
+    # paste in our turtle
+    screen.paste(icon_image2,(icon_x2, icon_y2), mask2)
+
 
     screen = screen.convert("RGB")
     screen_draw = ImageDraw.Draw(screen)
@@ -206,7 +209,12 @@ try:
     if currentDT_TZadjusted.second == 5 & turtleStatus == False: 
       print "Seed a turtle now!"
       turtleStatus = True
-      
+      icon_x2 = -icon_width2
+      icon_y2 = random.randint(0,total_rows-icon_height)
+
+    # update our seaTurtle location for next time
+    icon_x2 = icon_x2 + 1
+
 
 
 
