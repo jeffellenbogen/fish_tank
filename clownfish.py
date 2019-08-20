@@ -215,6 +215,9 @@ try:
     # update our seaTurtle location for next time
     icon_x2 = icon_x2 + 1
 
+    if icon_x2 > total_columns:
+      turtleStatus = False
+
 
 
 
