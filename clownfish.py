@@ -189,6 +189,7 @@ try:
     day_of_week = currentDT_TZadjusted.strftime("%A")
     date_string = currentDT_TZadjusted.strftime("%B %d, %Y")
     seconds = int(currentDT_TZadjusted.strftime("%S"))
+    print seconds
 
     time_size = fnt2.getsize(time_string)
     day_of_week_size = fnt.getsize(day_of_week)
