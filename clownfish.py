@@ -88,14 +88,14 @@ mask_data2 = []
 for item in icon_data2:
   print item
   if item[0] >= 245 and item[1] <= 10 and item[2] <= 10:
-    mask_data.append(0)
+    mask_data2.append(0)
     print "transparent"
   else:
-    mask_data.append(255)
+    mask_data2.append(255)
     print "opaque"
 mask2.putdata(mask_data2)
 icon_x2 = total_columns
-icon_y2 = random.randint(0,total_rows-icon_height)
+icon_y2 = random.randint(0,total_rows-icon_height2)
 
 
 screen = Image.new("RGBA",(total_columns,total_rows))
@@ -218,9 +218,6 @@ try:
 
     if icon_x2 > total_columns:
       turtleStatus = False
-
-
-
 
     # update our clownfish location for next time
     icon_x = icon_x + clownfish_direction
