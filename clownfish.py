@@ -175,16 +175,15 @@ try:
     screen = screen.convert("RGB")
     screen_draw = ImageDraw.Draw(screen)
 
-    # draw text on top
+    #########################################
+    # draw time information text on top
+    #########################################
     currentDT = datetime.datetime.now(timezone('UTC'))
     currentDT_TZadjusted = currentDT.astimezone(timezone('US/Mountain'))
     time_string = currentDT_TZadjusted.strftime("%I:%M:%S %p")
     day_of_week = currentDT_TZadjusted.strftime("%A")
     date_string = currentDT_TZadjusted.strftime("%B %d, %Y")
     seconds = currentDT_TZadjusted.strftime("%S")
-
-    if seconds == "5": 
-      print "5 seconds!"
 
     time_size = fnt2.getsize(time_string)
     day_of_week_size = fnt.getsize(day_of_week)
@@ -199,8 +198,15 @@ try:
     screen_draw.text((edge_offset_x + day_of_week_size[0] + text_spacing, total_rows - edge_offset_y),date_string, fill = (255,255,255), font = fnt)
     matrix.SetImage(screen,0,0)
 
+    #########################################
+    # Start turtle from right to left at 5 seconds after the minute
+    #########################################
+    if currentDT_TZadjusted.seconds == 5: 
+      print "Seed a turtle now!"
 
-    # update our location for next time
+
+
+    # update our clownfish location for next time
     icon_x = icon_x + clownfish_direction
     if clownfish_direction == -1:
       if icon_x < -icon_width:
