@@ -188,7 +188,7 @@ try:
     time_string = currentDT_TZadjusted.strftime("%I:%M:%S %p")
     day_of_week = currentDT_TZadjusted.strftime("%A")
     date_string = currentDT_TZadjusted.strftime("%B %d, %Y")
-    seconds = currentDT_TZadjusted.strftime("%S")
+    seconds = int(currentDT_TZadjusted.strftime("%S"))
 
     time_size = fnt2.getsize(time_string)
     day_of_week_size = fnt.getsize(day_of_week)
@@ -206,7 +206,7 @@ try:
     #########################################
     # Start turtle from right to left at 5 seconds after the minute
     #########################################
-    if (currentDT_TZadjusted.second == 30 & turtleStatus == False): 
+    if (seconds == 30 & turtleStatus == False): 
       print "Seed a turtle now!"
       turtleStatus = True
       icon_x2 = -icon_width2
