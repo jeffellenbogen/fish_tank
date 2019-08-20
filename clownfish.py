@@ -206,7 +206,7 @@ try:
     #########################################
     # Start turtle from right to left at 5 seconds after the minute
     #########################################
-    if currentDT_TZadjusted.second == 5 & turtleStatus == False: 
+    if (currentDT_TZadjusted.second == 5 & turtleStatus == False): 
       print "Seed a turtle now!"
       turtleStatus = True
       icon_x2 = -icon_width2
