@@ -113,48 +113,11 @@ def clownfishDirectionChooser():
   clownfish_y = random.randint(0,total_rows-clownfish_height)
   clownfish_direction_chooser = random.randint(1,10)
   if clownfish_direction_chooser % 2 == 0:
-
     clownfish_x = total_columns
-    '''
-    clownfish = Image.open("clownfish_left.jpg")
-    clownfish = clownfish.convert("RGBA")
-    clownfish = clownfish.resize((clownfish_width, clownfish_height))
-
-    clownfish_mask = Image.new("L", (clownfish_width,clownfish_height))
-    clownfish_data = clownfish.getdata()
-    clownfish_mask_data = []
-    for item in clownfish_data:
-      print item
-      if item[0] <= 10 and item[1] >= 245 and item[2] <= 10:
-        clownfish_mask_data.append(0)
-        print "transparent"
-      else:
-        clownfish_mask_data.append(255)
-        print "opaque"
-    clownfish_mask.putdata(clownfish_mask_data)
-    '''
     print "swim left"
     return -1
   else: 
     clownfish_x = -clownfish_width
-    '''
-    clownfish = Image.open("clownfish_right.jpg")
-    clownfish = clownfish.convert("RGBA")
-    clownfish = clownfish.resize((clownfish_width, clownfish_height))
-
-    clownfish_mask = Image.new("L", (clownfish_width,clownfish_height))
-    clownfish_data = clownfish.getdata()
-    clownfish_mask_data = []
-    for item in clownfish_data:
-      print item
-      if item[0] <= 10 and item[1] >= 245 and item[2] <= 10:
-        clownfish_mask_data.append(0)
-        print "transparent"
-      else:
-        mask_data.append(255)
-        print "opaque"
-    clownfish_mask.putdata(clownfish_mask_data)
-    '''
     print "swim right"
     return 1
 
