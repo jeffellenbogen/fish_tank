@@ -130,7 +130,7 @@ def clownfishDirectionChooser():
         clownfish_mask_data.append(0)
         print "transparent"
       else:
-        mask_data.append(255)
+        clownfish_mask_data.append(255)
         print "opaque"
     clownfish_mask.putdata(clownfish_mask_data)
     print "swim left"
