@@ -30,21 +30,20 @@ options.parallel = matrix_vertical
 options.hardware_mapping = 'regular' 
 
 options.gpio_slowdown = 2
-
 matrix = RGBMatrix(options = options)
 
 ###################################
 # Main code 
 ###################################
+fnt = ImageFont.truetype("Arial_Bold.ttf",10)
+fnt2 = ImageFont.truetype("Arial_Bold.ttf",12)
+fnt3 = ImageFont.truetype("Arial_Bold.ttf",16)
+
 clownfish_width = 40
 clownfish_height = 25
 
 seaTurtle_width = 80
 seaTurtle_height = 50
-
-fnt = ImageFont.truetype("Arial_Bold.ttf",10)
-fnt2 = ImageFont.truetype("Arial_Bold.ttf",12)
-fnt3 = ImageFont.truetype("Arial_Bold.ttf",16)
 
 background = Image.open("reef_bgrd_dark_bottom.jpg")
 background.convert("RGBA")
@@ -95,9 +94,7 @@ seaTurtle_mask.putdata(seaTurtle_mask_data)
 seaTurtle_x = total_columns
 seaTurtle_y = random.randint(0,total_rows-seaTurtle_height)
 
-
 screen = Image.new("RGBA",(total_columns,total_rows))
-
 
 #############################################
 # Clownfish direction chooser
