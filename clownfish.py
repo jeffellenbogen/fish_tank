@@ -75,7 +75,7 @@ for item in clownfish_data:
   else:
     clownfish_mask_data.append(255)
     print "opaque"
-mask.putdata(clownfish_mask_data)
+clownfish_mask.putdata(clownfish_mask_data)
 clownfish_x = total_columns
 clownfish_y = random.randint(0,total_rows-clownfish_height)
 
