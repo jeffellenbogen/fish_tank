@@ -109,48 +109,15 @@ def clownfishDirectionChooser():
   global clownfish
   global Image
   global mask
-
+  
+  clownfish_y = random.randint(0,total_rows-clownfish_height)
   clownfish_direction_chooser = random.randint(1,10)
   if clownfish_direction_chooser % 2 == 0:
     clownfish_x = total_columns
-    clownfish_y = random.randint(0,total_rows-clownfish_height)
-    clownfish = Image.open("clownfish_left.jpg")
-    clownfish = clownfish.convert("RGBA")
-    clownfish = clownfish.resize((clownfish_width, clownfish_height))
-
-    clownfish_mask = Image.new("L", (clownfish_width,clownfish_height))
-    clownfish_data = clownfish.getdata()
-    clownfish_mask_data = []
-    for item in clownfish_data:
-      print item
-      if item[0] <= 10 and item[1] >= 245 and item[2] <= 10:
-        clownfish_mask_data.append(0)
-        print "transparent"
-      else:
-        clownfish_mask_data.append(255)
-        print "opaque"
-    clownfish_mask.putdata(clownfish_mask_data)
     print "swim left"
     return -1
   else: 
     clownfish_x = -clownfish_width
-    clownfish_y = random.randint(0,total_rows-clownfish_height)
-    clownfish = Image.open("clownfish_right.jpg")
-    clownfish = clownfish.convert("RGBA")
-    clownfish = clownfish.resize((clownfish_width, clownfish_height))
-
-    clownfish_mask = Image.new("L", (clownfish_width,clownfish_height))
-    clownfish_data = clownfish.getdata()
-    clownfish_mask_data = []
-    for item in clownfish_data:
-      print item
-      if item[0] <= 10 and item[1] >= 245 and item[2] <= 10:
-        clownfish_mask_data.append(0)
-        print "transparent"
-      else:
-        mask_data.append(255)
-        print "opaque"
-    clownfish_mask.putdata(clownfish_mask_data)
     print "swim right"
     return 1
 
@@ -166,7 +133,12 @@ try:
     screen.paste(background,(0,0))
     
     # paste in our clownfish (Layer 1)
-    screen.paste(clownfish,(clownfish_x,clownfish_y),clownfish_mask)
+    if clownfish_direction == -1:
+      screen.paste(clownfish,(clownfish_x,clownfish_y),clownfish_mask)
+    else:
+      clownfish_flip = clownfish.transpose(Image.FLIP_LEFT_RIGHT)
+      clownfish_flip_mask = clownfish_mask.transpose(Image.FLIP_LEFT_RIGHT)
+      screen.paste(clownfish_flip,(clownfish_x,clownfish_y),clownfish_flip_mask)
 
     # paste in our turtle (Layer 2)
     screen.paste(seaTurtle,(seaTurtle_x, seaTurtle_y), seaTurtle_mask)
@@ -184,7 +156,6 @@ try:
     date_string = currentDT_TZadjusted.strftime("%B %d, %Y")
     seconds = int(currentDT_TZadjusted.strftime("%S"))
     
-
     time_size = fnt2.getsize(time_string)
     day_of_week_size = fnt.getsize(day_of_week)
     date_string_size = fnt.getsize(date_string)
