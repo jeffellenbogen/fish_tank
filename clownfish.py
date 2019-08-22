@@ -59,9 +59,13 @@ seaTurtle = seaTurtle.resize((seaTurtle_width, seaTurtle_height))
 seaTurtleStatus = False
 seaTurtleSpeed = 2
 
+
+#####################################################################
+# Transparency Masking
 # now that we have our image, we want to make a transparency mask.
-# start by looking at each pixel, and if it's green, make the mask
+# start by looking at each pixel, and if it's green (0,255,0), make the mask
 # transparent (black).  Otherwise, make it fully opaque (white)
+#####################################################################
 
 clownfish_mask = Image.new("L", (clownfish_width,clownfish_height))
 clownfish_data = clownfish.getdata()
@@ -78,7 +82,6 @@ clownfish_mask.putdata(clownfish_mask_data)
 clownfish_x = total_columns
 clownfish_y = random.randint(0,total_rows-clownfish_height)
 
-
 seaTurtle_mask = Image.new("L", (seaTurtle_width,seaTurtle_height))
 seaTurtle_data = seaTurtle.getdata()
 seaTurtle_mask_data = []
@@ -94,7 +97,7 @@ seaTurtle_mask.putdata(seaTurtle_mask_data)
 seaTurtle_x = total_columns
 seaTurtle_y = random.randint(0,total_rows-seaTurtle_height)
 
-screen = Image.new("RGBA",(total_columns,total_rows))
+
 
 #############################################
 # Clownfish direction chooser
@@ -106,9 +109,9 @@ def clownfishDirectionChooser():
   global total_rows
   global clownfish_height
   global clownfish_width
-  global clownfish
-  global Image
-  global mask
+  #global clownfish
+  #global Image
+  #global mask
   
   clownfish_y = random.randint(0,total_rows-clownfish_height)
   clownfish_direction_chooser = random.randint(1,10)
@@ -124,7 +127,9 @@ def clownfishDirectionChooser():
 #############################################
 # Main loop
 #############################################
+screen = Image.new("RGBA",(total_columns,total_rows))
 clownfish_direction = clownfishDirectionChooser()
+
 try:
   print("Press CTRL-C to stop")
   while True:
@@ -140,9 +145,10 @@ try:
       clownfish_flip_mask = clownfish_mask.transpose(Image.FLIP_LEFT_RIGHT)
       screen.paste(clownfish_flip,(clownfish_x,clownfish_y),clownfish_flip_mask)
 
-    # paste in our turtle (Layer 2)
+    # paste in our seaTurtle (Layer 2)
     screen.paste(seaTurtle,(seaTurtle_x, seaTurtle_y), seaTurtle_mask)
 
+    #convert the whole screen from RGBA to RGB so we can display it
     screen = screen.convert("RGB")
     screen_draw = ImageDraw.Draw(screen)
 
@@ -164,7 +170,7 @@ try:
     edge_offset_y = 13
     text_spacing = 4
 
-    #(Layer 3)
+    #(Layer 3 - on top of the image composite called screen)
     screen_draw.text((edge_offset_x,total_rows - edge_offset_y * 2),time_string, fill = (255,255,255), font = fnt2)
     screen_draw.text((edge_offset_x, total_rows - edge_offset_y),day_of_week, fill = (255,255,255), font = fnt)
     screen_draw.text((edge_offset_x + day_of_week_size[0] + text_spacing, total_rows - edge_offset_y),date_string, fill = (255,255,255), font = fnt)
@@ -187,6 +193,8 @@ try:
 
     # update our clownfish location for next time
     clownfish_x = clownfish_x + clownfish_direction
+
+    # Moving left, start off screen to the right
     if clownfish_direction == -1:
       if clownfish_x < -clownfish_width:
         clownfish_direction = clownfishDirectionChooser() 
@@ -195,6 +203,7 @@ try:
         else: 
           clownfish_x = -clownfish_width
         clownfish_y = random.randint(0,total_rows-clownfish_height)
+    # Moving right, start off the screen to the left    
     else:
       if clownfish_x > total_columns:
         clownfish_direction = clownfishDirectionChooser() 
