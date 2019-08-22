@@ -96,10 +96,6 @@ try:
     time_string = currentDT_TZadjusted.strftime("%I:%M:%S %p")
     day_of_week = currentDT_TZadjusted.strftime("%A")
     date_string = currentDT_TZadjusted.strftime("%B %d, %Y")
-    '''How can we add the current date in the form Day-of-week, Month, Day-of-Month, Year
-    Also how can we adjust for the Colorado Time Zone?
-    Does this datetime.datetime.now pull from an internet time source or the local time on the Rasp Pi/Computer?
-    How do we adjust for daylight savings?'''
 
     # do some math to center our time string
     time_size = fnt.getsize(time_string)

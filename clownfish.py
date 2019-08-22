@@ -30,133 +30,127 @@ options.parallel = matrix_vertical
 options.hardware_mapping = 'regular' 
 
 options.gpio_slowdown = 2
-
 matrix = RGBMatrix(options = options)
 
 ###################################
 # Main code 
 ###################################
-icon_width = 40
-icon_height = 25
-
-icon_width2 = 80
-icon_height2 = 50
-
 fnt = ImageFont.truetype("Arial_Bold.ttf",10)
 fnt2 = ImageFont.truetype("Arial_Bold.ttf",12)
 fnt3 = ImageFont.truetype("Arial_Bold.ttf",16)
 
+clownfish_width = 40
+clownfish_height = 25
+
+seaTurtle_width = 80
+seaTurtle_height = 50
 
 background = Image.open("reef_bgrd_dark_bottom.jpg")
 background.convert("RGBA")
 background = background.resize((total_columns,total_rows))
 
+clownfish = Image.open("clownfish_left.jpg")
+clownfish = clownfish.convert("RGBA")
+clownfish = clownfish.resize((clownfish_width, clownfish_height))
 
-icon_image = Image.open("clownfish_left.jpg")
-icon_image = icon_image.convert("RGBA")
-icon_image = icon_image.resize((icon_width, icon_height))
-
-icon_image2 = Image.open("seaTurtle.jpg")
-icon_image2 = icon_image2.convert("RGBA")
-icon_image2 = icon_image2.resize((icon_width2, icon_height2))
-turtleStatus = False
-turtleSpeed = 2
+seaTurtle = Image.open("seaTurtle.jpg")
+seaTurtle = seaTurtle.convert("RGBA")
+seaTurtle = seaTurtle.resize((seaTurtle_width, seaTurtle_height))
+seaTurtleStatus = False
+seaTurtleSpeed = 2
 
 # now that we have our image, we want to make a transparency mask.
 # start by looking at each pixel, and if it's green, make the mask
 # transparent (black).  Otherwise, make it fully opaque (white)
 
-mask = Image.new("L", (icon_width,icon_height))
-icon_data = icon_image.getdata()
-mask_data = []
-for item in icon_data:
+clownfish_mask = Image.new("L", (clownfish_width,clownfish_height))
+clownfish_data = clownfish.getdata()
+clownfish_mask_data = []
+for item in clownfish_data:
   print item
   if item[0] <= 10 and item[1] >= 245 and item[2] <= 10:
-    mask_data.append(0)
+    clownfish_mask_data.append(0)
     print "transparent"
   else:
-    mask_data.append(255)
+    clownfish_mask_data.append(255)
     print "opaque"
-mask.putdata(mask_data)
-icon_x = total_columns
-icon_y = random.randint(0,total_rows-icon_height)
+clownfish_mask.putdata(clownfish_mask_data)
+clownfish_x = total_columns
+clownfish_y = random.randint(0,total_rows-clownfish_height)
 
 
-
-mask2 = Image.new("L", (icon_width2,icon_height2))
-icon_data2 = icon_image2.getdata()
-mask_data2 = []
-for item in icon_data2:
+seaTurtle_mask = Image.new("L", (seaTurtle_width,seaTurtle_height))
+seaTurtle_data = seaTurtle.getdata()
+seaTurtle_mask_data = []
+for item in seaTurtle_data:
   print item
   if item[0] <= 30 and item[1] <= 30 and item[2] >= 200:
-    mask_data2.append(0)
+    seaTurtle_mask_data.append(0)
     print "transparent"
   else:
-    mask_data2.append(255)
+    seaTurtle_mask_data.append(255)
     print "opaque"
-mask2.putdata(mask_data2)
-icon_x2 = total_columns
-icon_y2 = random.randint(0,total_rows-icon_height2)
-
+seaTurtle_mask.putdata(seaTurtle_mask_data)
+seaTurtle_x = total_columns
+seaTurtle_y = random.randint(0,total_rows-seaTurtle_height)
 
 screen = Image.new("RGBA",(total_columns,total_rows))
-
 
 #############################################
 # Clownfish direction chooser
 #############################################
 def clownfishDirectionChooser():
-  global icon_x
-  global icon_y
+  global clownfish_x
+  global clownfish_y
   global total_columns
   global total_rows
-  global icon_height
-  global icon_width
-  global icon_image
+  global clownfish_height
+  global clownfish_width
+  global clownfish
   global Image
   global mask
 
   clownfish_direction_chooser = random.randint(1,10)
   if clownfish_direction_chooser % 2 == 0:
-    icon_x = total_columns
-    icon_y = random.randint(0,total_rows-icon_height)
-    icon_image = Image.open("clownfish_left.jpg")
-    icon_image = icon_image.convert("RGBA")
-    icon_image = icon_image.resize((icon_width, icon_height))
+    clownfish_x = total_columns
+    clownfish_y = random.randint(0,total_rows-clownfish_height)
+    clownfish = Image.open("clownfish_left.jpg")
+    clownfish = clownfish.convert("RGBA")
+    clownfish = clownfish.resize((clownfish_width, clownfish_height))
 
-    mask = Image.new("L", (icon_width,icon_height))
-    icon_data = icon_image.getdata()
-    mask_data = []
-    for item in icon_data:
+    clownfish_mask = Image.new("L", (clownfish_width,clownfish_height))
+    clownfish_data = clownfish.getdata()
+    clownfish_mask_data = []
+    for item in clownfish_data:
       print item
       if item[0] <= 10 and item[1] >= 245 and item[2] <= 10:
-        mask_data.append(0)
+        clownfish_mask_data.append(0)
         print "transparent"
       else:
-        mask_data.append(255)
+        clownfish_mask_data.append(255)
         print "opaque"
-    mask.putdata(mask_data)
+    clownfish_mask.putdata(clownfish_mask_data)
     print "swim left"
     return -1
   else: 
-    icon_x = -icon_width
-    icon_y = random.randint(0,total_rows-icon_height)
-    icon_image = Image.open("clownfish_right.jpg")
-    icon_image = icon_image.convert("RGBA")
-    icon_image = icon_image.resize((icon_width, icon_height))
+    clownfish_x = -clownfish_width
+    clownfish_y = random.randint(0,total_rows-clownfish_height)
+    clownfish = Image.open("clownfish_right.jpg")
+    clownfish = clownfish.convert("RGBA")
+    clownfish = clownfish.resize((clownfish_width, clownfish_height))
 
-    mask = Image.new("L", (icon_width,icon_height))
-    icon_data = icon_image.getdata()
-    mask_data = []
-    for item in icon_data:
+    clownfish_mask = Image.new("L", (clownfish_width,clownfish_height))
+    clownfish_data = clownfish.getdata()
+    clownfish_mask_data = []
+    for item in clownfish_data:
       print item
       if item[0] <= 10 and item[1] >= 245 and item[2] <= 10:
-        mask_data.append(0)
+        clownfish_mask_data.append(0)
         print "transparent"
       else:
         mask_data.append(255)
         print "opaque"
-    mask.putdata(mask_data)
+    clownfish_mask.putdata(clownfish_mask_data)
     print "swim right"
     return 1
 
@@ -168,15 +162,14 @@ try:
   print("Press CTRL-C to stop")
   while True:
 
-    #restore background
+    #restore background (Layer 0)
     screen.paste(background,(0,0))
     
-    # paste in our clownfish
-    screen.paste(icon_image,(icon_x,icon_y),mask)
+    # paste in our clownfish (Layer 1)
+    screen.paste(clownfish,(clownfish_x,clownfish_y),clownfish_mask)
 
-    # paste in our turtle
-    screen.paste(icon_image2,(icon_x2, icon_y2), mask2)
-
+    # paste in our turtle (Layer 2)
+    screen.paste(seaTurtle,(seaTurtle_x, seaTurtle_y), seaTurtle_mask)
 
     screen = screen.convert("RGB")
     screen_draw = ImageDraw.Draw(screen)
@@ -200,6 +193,7 @@ try:
     edge_offset_y = 13
     text_spacing = 4
 
+    #(Layer 3)
     screen_draw.text((edge_offset_x,total_rows - edge_offset_y * 2),time_string, fill = (255,255,255), font = fnt2)
     screen_draw.text((edge_offset_x, total_rows - edge_offset_y),day_of_week, fill = (255,255,255), font = fnt)
     screen_draw.text((edge_offset_x + day_of_week_size[0] + text_spacing, total_rows - edge_offset_y),date_string, fill = (255,255,255), font = fnt)
@@ -208,36 +202,36 @@ try:
     #########################################
     # Start turtle from right to left at 30 seconds after the minute
     #########################################
-    if ((seconds % 30 == 0) & (turtleStatus == False)): 
+    if ((seconds % 30 == 0) & (seaTurtleStatus == False)): 
       print "Seed a turtle now!"
-      turtleStatus = True
-      icon_x2 = -icon_width2
-      icon_y2 = random.randint(0,total_rows-icon_height2)
+      seaTurtleStatus = True
+      seaTurtle_x = -seaTurtle_width
+      seaTurtle_y = random.randint(0,total_rows-seaTurtle_height)
 
     # update our seaTurtle location for next time
-    icon_x2 = icon_x2 + turtleSpeed
+    seaTurtle_x = seaTurtle_x + seaTurtleSpeed
 
-    if icon_x2 > total_columns:
-      turtleStatus = False
+    if seaTurtle_x > total_columns:
+      seaTurtleStatus = False
 
     # update our clownfish location for next time
-    icon_x = icon_x + clownfish_direction
+    clownfish_x = clownfish_x + clownfish_direction
     if clownfish_direction == -1:
-      if icon_x < -icon_width:
+      if clownfish_x < -clownfish_width:
         clownfish_direction = clownfishDirectionChooser() 
         if clownfish_direction == -1:
-          icon_x = total_columns
+          clownfish_x = total_columns
         else: 
-          icon_x = -icon_width
-        icon_y = random.randint(0,total_rows-icon_height)
+          clownfish_x = -clownfish_width
+        clownfish_y = random.randint(0,total_rows-clownfish_height)
     else:
-      if icon_x > total_columns:
+      if clownfish_x > total_columns:
         clownfish_direction = clownfishDirectionChooser() 
         if clownfish_direction == -1:
-          icon_x = total_columns
+          clownfish_x = total_columns
         else: 
-          icon_x = -icon_width
-        icon_y = random.randint(0,total_rows-icon_height)
+          clownfish_x = -clownfish_width
+        clownfish_y = random.randint(0,total_rows-clownfish_height)
     sleep(.1)
 
 except KeyboardInterrupt:
