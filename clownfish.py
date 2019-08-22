@@ -127,7 +127,7 @@ def clownfishDirectionChooser():
     for item in clownfish_data:
       print item
       if item[0] <= 10 and item[1] >= 245 and item[2] <= 10:
-        mask_data.append(0)
+        clownfish_mask_data.append(0)
         print "transparent"
       else:
         mask_data.append(255)
