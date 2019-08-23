@@ -87,7 +87,7 @@ falcon_data = falcon_image.getdata()
 falcon_mask_data = []
 for item in falcon_data:
   print item
-  if item[0] >= 245 and item[1] <= 10 and item[2] <= 10:
+  if item[0] >= 200 and item[1] <= 30 and item[2] <= 30:
     falcon_mask_data.append(0)
     print "transparent"
   else:
