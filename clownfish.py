@@ -45,15 +45,15 @@ clownfish_height = 25
 seaTurtle_width = 80
 seaTurtle_height = 50
 
-background = Image.open("reef_bgrd_dark_bottom.jpg")
+background = Image.open("images/reef_bgrd_dark_bottom.jpg")
 background.convert("RGBA")
 background = background.resize((total_columns,total_rows))
 
-clownfish = Image.open("clownfish_left.jpg")
+clownfish = Image.open("images/clownfish_left.jpg")
 clownfish = clownfish.convert("RGBA")
 clownfish = clownfish.resize((clownfish_width, clownfish_height))
 
-seaTurtle = Image.open("seaTurtle.jpg")
+seaTurtle = Image.open("images/seaTurtle.jpg")
 seaTurtle = seaTurtle.convert("RGBA")
 seaTurtle = seaTurtle.resize((seaTurtle_width, seaTurtle_height))
 seaTurtleStatus = False

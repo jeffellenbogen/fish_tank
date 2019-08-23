@@ -45,11 +45,11 @@ fnt2 = ImageFont.truetype("Arial_Bold.ttf",12)
 fnt3 = ImageFont.truetype("Arial_Bold.ttf",16)
 
 
-background = Image.open("andr_small.jpeg")
+background = Image.open("images/andr_small.jpeg")
 background.convert("RGBA")
 background = background.resize((total_columns,total_rows))
 
-icon_image = Image.open("tie-fighter-01.jpg")
+icon_image = Image.open("images/tie-fighter-01.jpg")
 icon_image = icon_image.convert("RGBA")
 icon_image = icon_image.resize((icon_size,icon_size))
 
