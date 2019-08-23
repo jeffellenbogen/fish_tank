@@ -59,8 +59,8 @@ icon_y = random.randint(0,total_rows-icon_size)
 falcon_imageWidth = 102
 falcon_imageHeight = 50
 falcon_image = Image.open("images/Millennium-Falcon.png")
-falcon_image = icon_image.convert("RGBA")
-falcon_image = icon_image.resize((falcon_imageWidth,falcon_imageHeight))
+falcon_image = falcon_image.convert("RGBA")
+falcon_image = falcon_image.resize((falcon_imageWidth,falcon_imageHeight))
 falcon_x = - falcon_imageWidth
 falcon_y = random.randint(0,total_rows - falcon_imageHeight)
 
