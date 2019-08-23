@@ -148,11 +148,10 @@ try:
       icon_y = random.randint(0,total_rows-icon_size)
 
 
-    falcon_x = falcon_x + (1/4)
-    if falcon_x % 1 == 0:
-      if (falcon_x > total_columns):
-        falcon_x = -3 * total_columns
-        falcon_y = random.randint(0,total_rows - falcon_imageHeight)
+    falcon_x = falcon_x + 2
+    if (falcon_x > total_columns):
+      falcon_x = -3 * total_columns
+      falcon_y = random.randint(0,total_rows - falcon_imageHeight)
 
     sleep(.1)
 
