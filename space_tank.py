@@ -38,7 +38,7 @@ matrix = RGBMatrix(options = options)
 ###################################
 # Main code 
 ###################################
-icon_size = 40
+
 
 fnt = ImageFont.truetype("Arial_Bold.ttf",14)
 fnt2 = ImageFont.truetype("Arial_Bold.ttf",20)
@@ -49,9 +49,20 @@ background = Image.open("images/andr_small.jpeg")
 background.convert("RGBA")
 background = background.resize((total_columns,total_rows))
 
+icon_size = 40
 icon_image = Image.open("images/tie-fighter-01.jpg")
 icon_image = icon_image.convert("RGBA")
 icon_image = icon_image.resize((icon_size,icon_size))
+icon_x = total_columns
+icon_y = random.randint(0,total_rows-icon_size)
+
+falcon_imageWidth = 102
+falcon_imageHeight = 50
+falcon_image = Image.open("images/Millennium-Falcon.png")
+falcon_image = icon_image.convert("RGBA")
+falcon_image = icon_image.resize((falcon_imageWidth,falcon_imageHeight))
+falcon_x = - falcon_imageWidth
+falcon_y = random.randint(0,total_rows - falcon_imageHeight)
 
 # now that we have our image, we want to make a transparency mask.
 # start by looking at each pixel, and if it's white, make the mask
@@ -71,8 +82,18 @@ for item in icon_data:
     print "opaque"
 mask.putdata(mask_data)
 
-icon_x = total_columns
-icon_y = random.randint(0,total_rows-icon_size)
+falcon_mask = Image.new("L", (falcon_imageWidth,falcon_imageHeight))
+falcon_data = falcon_image.getdata()
+falcon_mask_data = []
+for item in falcon_data:
+  print item
+  if item[0] >= 245 and item[1] <= 10 and item[2] <= 10:
+    falcon_mask_data.append(0)
+    print "transparent"
+  else:
+    falcon_mask_data.append(255)
+    print "opaque"
+falcon_mask.putdata(falcon_mask_data)
 
 screen = Image.new("RGBA",(total_columns,total_rows))
 
@@ -83,9 +104,11 @@ try:
     #restore background
     screen.paste(background,(0,0))
     
-    # paste in our ship
+    # paste in our tie-fighter
     screen.paste(icon_image,(icon_x,icon_y),mask)
 
+    # paste in our millinium falcon
+    screen.paste(falcon_image,(falcon_x,falcon_y),falcon_mask)
 
     screen = screen.convert("RGB")
     screen_draw = ImageDraw.Draw(screen)
@@ -123,6 +146,12 @@ try:
     if (icon_x < (0 - icon_size)):
       icon_x = total_columns
       icon_y = random.randint(0,total_rows-icon_size)
+
+
+    falcon_x = falcon_x + 2
+    if (falcon_x > total_columns):
+        falcon_x = -3 * total_columns
+        falcon_y = random.randint(0,total_rows - falcon_imageHeight)
 
     sleep(.1)
 
