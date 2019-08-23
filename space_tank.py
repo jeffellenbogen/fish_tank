@@ -87,7 +87,7 @@ falcon_data = falcon_image.getdata()
 falcon_mask_data = []
 for item in falcon_data:
   print item
-  if item[0] >= 200 and item[1] <= 30 and item[2] <= 30:
+  if item[0] >= 170 and item[1] <= 50 and item[2] <= 50:
     falcon_mask_data.append(0)
     print "transparent"
   else:
@@ -148,7 +148,7 @@ try:
       icon_y = random.randint(0,total_rows-icon_size)
 
 
-    falcon_x = falcon_x + 2
+    falcon_x = falcon_x + 3
     if (falcon_x > total_columns):
         falcon_x = -3 * total_columns
         falcon_y = random.randint(0,total_rows - falcon_imageHeight)
