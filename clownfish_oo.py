@@ -89,7 +89,7 @@ class Icon():
     else:
       tempimage = self.transpose(Image.FLIP_LEFT_RIGHT)
       tempimageMask = self.mask.transpose(Image.FLIP_LEFT_RIGHT)
-      image.paste(self.tempimage,(self.x,self.y),tempimageMask)
+      image.paste(self.tempimage,(self.x,self.y),self.tempimageMask)
 
   ############################################
   # move 
