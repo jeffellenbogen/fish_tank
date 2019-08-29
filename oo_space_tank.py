@@ -29,7 +29,7 @@ class Icon():
   def __init__(self, filename, rtr, gtr, btr, x_size, y_size):
   
     # top left corner of our image
-    self.x = 0
+    self.x = -x_size
     self.y = 0
 
     self.x_size = x_size
@@ -174,7 +174,7 @@ num_vert = 3
 space_tank = Tank(matrix_rows, matrix_columns, num_horiz, num_vert)
 space_tank.set_background("images/andr_small.jpeg")
 tie = Icon("images/tie-fighter-01.jpg",(242,242),(242,242),(242,242),40,40)
-fish = Icon("images/clownfish_left.jpg",(0,10),(200,255),(0,10),60,100)
+fish = Icon("images/clownfish_left.jpg",(0,10),(200,255),(0,10),40,25)
 space_tank.add_icon(tie)
 space_tank.add_icon(fish)
 
