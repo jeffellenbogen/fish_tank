@@ -201,7 +201,7 @@ fish_tank.add_icon(seaTurtle)
 try:
   print("Press CTRL-C to stop")
   while True:
-    space_tank.show()
+    fish_tank.show()
     sleep(.025)
 except KeyboardInterrupt:
   exit(0)
