@@ -32,7 +32,7 @@ class Icon():
     self.total_rows = total_rows
     self.total_columns = total_columns
 
-    self.x = total_columns + random.randint(0,30)
+    self.x = total_columns
     self.y = random.randint(0,total_rows - y_size)
 
     self.x_size = x_size
@@ -44,6 +44,7 @@ class Icon():
 
     self.slowdown = 1
     self.movecount = 1
+    self.direction = 1
 
     # now that we have our image, we want to make a transparency mask.
     # start by looking at each pixel, and if it's in our transparency 
@@ -74,6 +75,14 @@ class Icon():
     self.slowdown = slowdown
   
   ############################################
+  # setDirection method 
+  #   pastes the icon into the passed image
+  ###############################################
+  
+  def setDirection(self,direction):
+    self.direction = direction
+  
+  ############################################
   # show method 
   #   pastes the icon into the passed image
   ###############################################
@@ -92,17 +101,32 @@ class Icon():
     if self.movecount < self.slowdown:
       self.movecount += 1
       return
-    # move one pixel left.
-    self.x = self.x - 1
-    self.movecount = 1
     
     # if we're off the screen, reset to the right, and pick a new y coordinate.
-    if (self.x < 0-self.x_size):
-      self.x = self.total_columns + random.randint(0,50)
+    if ((self.x < 0-self.x_size) or (self.x > self.total_columns)):
+      #choose direction
+      directionChooser = random.randint(1,3)
+      #go right
+      if directionChooser == 1: 
+        self.direction = 1
+        self.x = 0 - self.x_size
+      # go left  
+      else:
+        self.direction = -1
+        self.x = self.total_columns
+
+      
       if self.y_size >= self.total_rows:
         self.y = random.randint(0,self.total_rows)
       else:
         self.y = random.randint(0,self.total_rows - self.y_size)
+
+    # move one pixel left.
+    self.x = self.x + self.direction
+    self.movecount = 1
+
+
+      
 
 
 ###################################
