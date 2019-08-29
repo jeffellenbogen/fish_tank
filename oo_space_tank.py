@@ -185,6 +185,6 @@ try:
   print("Press CTRL-C to stop")
   while True:
     space_tank.show()
-    sleep(.1)
+    sleep(.025)
 except KeyboardInterrupt:
   exit(0)
