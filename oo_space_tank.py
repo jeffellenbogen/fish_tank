@@ -76,17 +76,17 @@ class Icon():
   #   If we go off the screen, we'll reset x, and pick a new
   #     random y.  
   ###############################################
-  def move(self, screen_x, screen_y):
+  def move(self):
     # move one pixel left.
     self.x = self.x - 1
     
     # if we're off the screen, reset to the right, and pick a new y coordinate.
     if (self.x < 0-self.x_size):
-      self.x = screen_x
-      if self.y_size >= screen_y:
-        self.y = random.randint(0,screen_y)
+      self.x = self.screen_x + random.randint(0,50)
+      if self.y_size >= self.screen_y:
+        self.y = random.randint(0,self.screen_y)
       else:
-        self.y = random.randint(0,screen_y - self.y_size)
+        self.y = random.randint(0,self.screen_y - self.y_size)
 
 
 ###################################
@@ -146,7 +146,7 @@ class Tank():
     
     # move and paste in our icons 
     for icon in self.icons:
-      icon.move(self.total_columns, self.total_rows)
+      icon.move()
       icon.show(self.screen)
 
     self.screen = self.screen.convert("RGB")
