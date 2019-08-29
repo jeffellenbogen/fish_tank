@@ -66,30 +66,33 @@ class Icon():
         mask_data.append(255)
       self.mask.putdata(mask_data)
 
-  ############################################
+  ###############################################
   # setSlowdown method 
   ###############################################
   
   def setSlowdown(self,slowdown):
     self.slowdown = slowdown
   
-  ############################################
+  ###############################################
   # setDirection method 
   ###############################################
   
   def setDirection(self,direction):
     self.direction = direction
   
-  ############################################
+  ###############################################
   # show method 
   ###############################################
   def show(self,image):
     if self.direction == 1:
       image.paste(self.image,(self.x,self.y),self.mask)
     else:
-      tempimage = self.transpose(Image.FLIP_LEFT_RIGHT)
-      tempimageMask = self.mask.transpose(Image.FLIP_LEFT_RIGHT)
-      image.paste(self.tempimage,(self.x,self.y),self.tempimageMask)
+      tempimage = self.image
+      tempimageMask = self.mask
+      tempimageFlip = tempimage.transpose(Image.FLIP_LEFT_RIGHT)
+      tempimageFlipMask = tempimageMask.transpose(Image.FLIP_LEFT_RIGHT)
+      image.paste(tempimageFlip,(self.x,self.y),tempimageFlipMask)
+
 
   ############################################
   # move 
