@@ -110,11 +110,11 @@ class Icon():
     if ((self.x < 0-self.x_size) or (self.x > self.total_columns)):
       #choose direction
       directionChooser = random.randint(1,11)
-      #go right
+      #direction is right
       if directionChooser % 2 == 0: 
         self.direction = 1
         self.x = 0 - self.x_size
-      # go left  
+      #direction is left  
       else:
         self.direction = -1
         self.x = self.total_columns
@@ -125,8 +125,9 @@ class Icon():
       else:
         self.y = random.randint(0,self.total_rows - self.y_size)
 
-    # move one pixel left.
+    # move one pixel left or right depending on direction. 1 -> Right, -1 -> Left
     self.x = self.x + self.direction
+    # increment movecount for slowing down movement if a value is set for .setSlowdown
     self.movecount = 1
 
 ###################################
@@ -192,15 +193,19 @@ class Tank():
     self.screen = self.screen.convert("RGB")
     screen_draw = ImageDraw.Draw(self.screen)
 
-    # draw text on top
+
+    ################################################
+    # Date and time formatting and postioning
+    ################################################
     currentDT = datetime.datetime.now()
     time_string = currentDT.strftime("%H:%M:%S")
 
-    # do some math to center our time string
+    #create various fonts
     fnt = ImageFont.truetype("Arial_Bold.ttf",10)
     fnt2 = ImageFont.truetype("Arial_Bold.ttf",12)
     fnt3 = ImageFont.truetype("Arial_Bold.ttf",16)
 
+    #convert to selected timezone and format date/time info
     currentDT = datetime.datetime.now(timezone('UTC'))
     currentDT_TZadjusted = currentDT.astimezone(timezone('US/Mountain'))
     time_string = currentDT_TZadjusted.strftime("%I:%M:%S %p")
@@ -216,11 +221,12 @@ class Tank():
     edge_offset_y = 13
     text_spacing = 4
     
-    #(Layer 3 - on top of the image composite called screen)
+    #draw the text on screen
     screen_draw.text((edge_offset_x,self.total_rows - edge_offset_y * 2),time_string, fill = (255,255,255), font = fnt2)
     screen_draw.text((edge_offset_x, self.total_rows - edge_offset_y),day_of_week, fill = (255,255,255), font = fnt)
     screen_draw.text((edge_offset_x + day_of_week_size[0] + text_spacing, self.total_rows - edge_offset_y),date_string, fill = (255,255,255), font = fnt)
 
+    #write all changes to the screen
     self.matrix.SetImage(self.screen,0,0)
 
 
