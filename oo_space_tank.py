@@ -42,6 +42,9 @@ class Icon():
     self.image = self.image.convert("RGBA")
     self.image = self.image.resize((x_size,y_size))
 
+    self.slowdown = 1
+    self.movecount = 1
+
     # now that we have our image, we want to make a transparency mask.
     # start by looking at each pixel, and if it's in our transparency 
     # range, make the mask transparent (black).  Otherwise, make it 
@@ -63,11 +66,12 @@ class Icon():
       self.mask.putdata(mask_data)
 
   ############################################
-  # show method 
+  # setSlowdown method 
   #   pastes the icon into the passed image
   ###############################################
-  def show(self,image):
-    image.paste(self.image,(self.x,self.y),self.mask)
+  def setSlowdown(self,slowdown):
+    self.slowdown = slowdown
+
 
   ############################################
   # move 
@@ -77,8 +81,12 @@ class Icon():
   #     random y.  
   ###############################################
   def move(self):
+    if self.movecount < self.slowdown:
+      self.movecount += 1
+      return
     # move one pixel left.
-    self.x = self.x - 2
+    self.x = self.x - 1
+    self.movecount = 1
     
     # if we're off the screen, reset to the right, and pick a new y coordinate.
     if (self.x < 0-self.x_size):
@@ -178,6 +186,7 @@ space_tank = Tank(matrix_rows, matrix_columns, num_horiz, num_vert)
 space_tank.set_background("images/andr_small.jpeg")
 tie = Icon("images/tie-fighter-01.jpg",(242,242),(242,242),(242,242),40,40,space_tank.total_columns,space_tank.total_rows)
 fish = Icon("images/clownfish_left.jpg",(0,10),(200,255),(0,10),40,25,space_tank.total_columns,space_tank.total_rows)
+fish.setSlowdown(2)
 space_tank.add_icon(tie)
 space_tank.add_icon(fish)
 
@@ -185,6 +194,6 @@ try:
   print("Press CTRL-C to stop")
   while True:
     space_tank.show()
-    sleep(.05)
+    sleep(.025)
 except KeyboardInterrupt:
   exit(0)
