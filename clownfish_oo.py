@@ -33,7 +33,7 @@ class Icon():
     self.total_columns = total_columns
 
     self.x = total_columns + random.randint(0,30)
-    self.y = random.randint(0,total_rows)
+    self.y = random.randint(0,total_rows-self.y_size)
 
     self.x_size = x_size
     self.y_size = y_size
