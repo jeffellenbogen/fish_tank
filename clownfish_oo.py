@@ -192,20 +192,20 @@ class Tank():
     edge_offset_y = 13
     text_spacing = 4
 
-    '''
+    
     #(Layer 3 - on top of the image composite called screen)
     screen_draw.text((edge_offset_x,total_rows - edge_offset_y * 2),time_string, fill = (255,255,255), font = fnt2)
     screen_draw.text((edge_offset_x, total_rows - edge_offset_y),day_of_week, fill = (255,255,255), font = fnt)
     screen_draw.text((edge_offset_x + day_of_week_size[0] + text_spacing, total_rows - edge_offset_y),date_string, fill = (255,255,255), font = fnt)
     matrix.SetImage(screen,0,0)
     
-
+    '''
     time_size = fnt.getsize(time_string)
     time_x = (self.total_columns - time_size[0])/2
     time_y = (self.total_rows - time_size[1])/2 
     screen_draw.text((time_x,time_y),time_string, fill = (255,0,0,), font = fnt)
     '''
-    
+
     self.matrix.SetImage(self.screen,0,0)
 
   
