@@ -68,7 +68,6 @@ class Icon():
 
   ############################################
   # setSlowdown method 
-  #   pastes the icon into the passed image
   ###############################################
   
   def setSlowdown(self,slowdown):
@@ -76,7 +75,6 @@ class Icon():
   
   ############################################
   # setDirection method 
-  #   pastes the icon into the passed image
   ###############################################
   
   def setDirection(self,direction):
@@ -84,11 +82,14 @@ class Icon():
   
   ############################################
   # show method 
-  #   pastes the icon into the passed image
   ###############################################
   def show(self,image):
-    image.paste(self.image,(self.x,self.y),self.mask)
-
+    if self.direction == 1:
+      image.paste(self.image,(self.x,self.y),self.mask)
+    else:
+      tempimage = self.transpose(Image.FLIP_LEFT_RIGHT)
+      tempimageMask = self.mask.transpose(Image.FLIP_LEFT_RIGHT)
+      image.paste(self.tempimage,(self.x,self.y),tempimageMask)
 
   ############################################
   # move 
@@ -124,10 +125,6 @@ class Icon():
     # move one pixel left.
     self.x = self.x + self.direction
     self.movecount = 1
-
-
-      
-
 
 ###################################
 #  Tank class
@@ -215,7 +212,6 @@ class Tank():
     edge_offset_x = 3
     edge_offset_y = 13
     text_spacing = 4
-
     
     #(Layer 3 - on top of the image composite called screen)
     screen_draw.text((edge_offset_x,self.total_rows - edge_offset_y * 2),time_string, fill = (255,255,255), font = fnt2)
@@ -224,7 +220,7 @@ class Tank():
 
     self.matrix.SetImage(self.screen,0,0)
 
-  
+
 ###################################
 # Main code 
 ###################################
@@ -237,7 +233,7 @@ fish_tank = Tank(matrix_rows, matrix_columns, num_horiz, num_vert)
 fish_tank.set_background("images/reef_bgrd_dark_bottom.jpg")
 clownfish = Icon("images/clownfish_left.jpg",(0,10),(200,255),(0,10),40,25,fish_tank.total_columns,fish_tank.total_rows)
 seaTurtle = Icon("images/seaTurtle.jpg",(0,10),(0,10),(150,255),80,50,fish_tank.total_columns,fish_tank.total_rows)
-clownfish.setSlowdown(3)
+clownfish.setSlowdown(2)
 fish_tank.add_icon(clownfish)
 fish_tank.add_icon(seaTurtle)
 
@@ -245,6 +241,6 @@ try:
   print("Press CTRL-C to stop")
   while True:
     fish_tank.show()
-    sleep(.01)
+    sleep(.02)
 except KeyboardInterrupt:
   exit(0)
