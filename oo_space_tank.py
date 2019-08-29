@@ -170,7 +170,9 @@ num_vert = 3
 space_tank = Tank(matrix_rows, matrix_columns, num_horiz, num_vert)
 space_tank.set_background("images/andr_small.jpeg")
 tie = Icon("images/tie-fighter-01.jpg",(242,242),(242,242),(242,242),40,40)
+fish = Icon("images/clownfish_left.jpg",(0,10),(230,255),(0,10),100,100)
 space_tank.add_icon(tie)
+space_tank.add_icon(fish)
 
 try:
   print("Press CTRL-C to stop")
