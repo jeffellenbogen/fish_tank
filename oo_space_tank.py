@@ -80,7 +80,7 @@ class Icon():
     # if we're off the screen, reset to the right, and pick a new y coordinate.
     if (self.x < 0-self.x_size):
       self.x = screen_x
-      if self.y >= screen_y:
+      if self.y_size >= screen_y:
         self.y = random.randint(0,screen_y)
       else:
         self.y = random.randint(0,screen_y - self.y_size)
