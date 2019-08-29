@@ -245,6 +245,6 @@ try:
   print("Press CTRL-C to stop")
   while True:
     fish_tank.show()
-    sleep(.025)
+    sleep(.01)
 except KeyboardInterrupt:
   exit(0)
