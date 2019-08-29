@@ -26,11 +26,14 @@ class Icon():
   #      pixels in our image, represented as a tuple.  Any pixel in that range 
   #      (inclusive) will be marked as transparent.
   ###############################################
-  def __init__(self, filename, rtr, gtr, btr, x_size, y_size):
+  def __init__(self, filename, rtr, gtr, btr, x_size, y_size, total_columns, total_rows):
   
     # top left corner of our image
-    self.x = -x_size
-    self.y = 0
+    self.total_rows = total_rows
+    self.total_columns = total_columns
+
+    self.x = total_columns + random.randint(0,30)
+    self.y = random.randint(0,total_rows)
 
     self.x_size = x_size
     self.y_size = y_size
@@ -173,8 +176,8 @@ num_vert = 3
 
 space_tank = Tank(matrix_rows, matrix_columns, num_horiz, num_vert)
 space_tank.set_background("images/andr_small.jpeg")
-tie = Icon("images/tie-fighter-01.jpg",(242,242),(242,242),(242,242),40,40)
-fish = Icon("images/clownfish_left.jpg",(0,10),(200,255),(0,10),40,25)
+tie = Icon("images/tie-fighter-01.jpg",(242,242),(242,242),(242,242),40,40,space_tank.total_columns,space_tank.total_rows)
+fish = Icon("images/clownfish_left.jpg",(0,10),(200,255),(0,10),40,25,space_tank.total_columns,space_tank.total_rows)
 space_tank.add_icon(tie)
 space_tank.add_icon(fish)
 
