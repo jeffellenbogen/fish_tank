@@ -162,14 +162,14 @@ class Tank():
 ###################################
 # Main code 
 ###################################
-matrix_rows = 64
-matrix_columns = 64
-num_horiz = 1
-num_vert = 1
+matrix_rows = 32
+matrix_columns = 32
+num_horiz = 5
+num_vert = 3
 
 space_tank = Tank(matrix_rows, matrix_columns, num_horiz, num_vert)
-space_tank.set_background("andr_small.jpeg")
-tie = Icon("tie-fighter-01.jpg",(242,242),(242,242),(242,242),40,40)
+space_tank.set_background("images/andr_small.jpeg")
+tie = Icon("images/tie-fighter-01.jpg",(242,242),(242,242),(242,242),40,40)
 space_tank.add_icon(tie)
 
 try:
