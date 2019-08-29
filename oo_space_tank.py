@@ -69,10 +69,17 @@ class Icon():
   # setSlowdown method 
   #   pastes the icon into the passed image
   ###############################################
-  '''
+  
   def setSlowdown(self,slowdown):
     self.slowdown = slowdown
-  '''
+  
+  ############################################
+  # show method 
+  #   pastes the icon into the passed image
+  ###############################################
+  def show(self,image):
+    image.paste(self.image,(self.x,self.y),self.mask)
+
 
   ############################################
   # move 
