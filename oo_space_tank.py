@@ -78,7 +78,7 @@ class Icon():
   ###############################################
   def move(self):
     # move one pixel left.
-    self.x = self.x - 1
+    self.x = self.x - 2
     
     # if we're off the screen, reset to the right, and pick a new y coordinate.
     if (self.x < 0-self.x_size):
@@ -185,6 +185,6 @@ try:
   print("Press CTRL-C to stop")
   while True:
     space_tank.show()
-    sleep(.025)
+    sleep(.05)
 except KeyboardInterrupt:
   exit(0)
