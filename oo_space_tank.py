@@ -82,11 +82,11 @@ class Icon():
     
     # if we're off the screen, reset to the right, and pick a new y coordinate.
     if (self.x < 0-self.x_size):
-      self.x = self.screen_x + random.randint(0,50)
+      self.x = self.total_columns + random.randint(0,50)
       if self.y_size >= self.screen_y:
-        self.y = random.randint(0,self.screen_y)
+        self.y = random.randint(0,self.total_rows)
       else:
-        self.y = random.randint(0,self.screen_y - self.y_size)
+        self.y = random.randint(0,self.total_rows - self.y_size)
 
 
 ###################################
