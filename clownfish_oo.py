@@ -204,7 +204,7 @@ class Tank():
     fnt = ImageFont.truetype("Arial_Bold.ttf",10)
     fnt2 = ImageFont.truetype("Arial_Bold.ttf",12)
     fnt3 = ImageFont.truetype("Arial_Bold.ttf",16)
-
+    fnt4 = ImageFont.truetype("Arial_Bold.ttf",20)
     #convert to selected timezone and format date/time info
     currentDT = datetime.datetime.now(timezone('UTC'))
     currentDT_TZadjusted = currentDT.astimezone(timezone('US/Mountain'))
@@ -230,10 +230,10 @@ class Tank():
     specialMessage1 = ("Welcome to")
     specialMessage2 = ("Maker Workshop")
     specialMessage1_size = fnt2.getsize(specialMessage1)
-    specialMessage2_size = fnt3.getsize(specialMessage2)
+    specialMessage2_size = fnt4.getsize(specialMessage2)
 
-    screen_draw.text(((self.total_columns - specialMessage1_size[0]) /2,30),specialMessage1, fill = (255,0,0), font = fnt2)
-    screen_draw.text(((self.total_columns - specialMessage2_size[0]) /2,70),specialMessage2, fill = (100,0,255), font = fnt)
+    screen_draw.text(((self.total_columns - specialMessage1_size[0]) /2,10),specialMessage1, fill = (255,0,0), font = fnt2)
+    screen_draw.text(((self.total_columns - specialMessage2_size[0]) /2,30),specialMessage2, fill = (100,0,255), font = fnt)
 
 
     #write all changes to the screen
