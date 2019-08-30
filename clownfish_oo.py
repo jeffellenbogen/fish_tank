@@ -229,10 +229,10 @@ class Tank():
     #special messages here
     specialMessage1 = ("Welcome to")
     specialMessage2 = ("Maker Workshop")
-    specialMessage1_size = fnt2.getsize(specialMessage1)
+    specialMessage1_size = fnt3.getsize(specialMessage1)
     specialMessage2_size = fnt4.getsize(specialMessage2)
 
-    screen_draw.text(((self.total_columns - specialMessage1_size[0]) /2,10),specialMessage1, fill = (255,0,0), font = fnt2)
+    screen_draw.text(((self.total_columns - specialMessage1_size[0]) /2,10),specialMessage1, fill = (255,0,0), font = fnt3)
     screen_draw.text(((self.total_columns - specialMessage2_size[0]) /2,30),specialMessage2, fill = (255,100,0), font = fnt4)
 
 
