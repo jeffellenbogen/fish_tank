@@ -229,7 +229,7 @@ class Tank():
 
     #special messages here
     specialMessage1 = ("Welcome to the")
-    specialMessage2 = ("C.R.E.A.T.E LAB")
+    specialMessage2 = ("C.R.E.A.T.E. LAB")
     #specialMessage3 = ("The Center for Engineering Artistry and Technological Expression")
     specialMessage1_size = fnt3.getsize(specialMessage1)
     specialMessage2_size = fnt4.getsize(specialMessage2)
