@@ -235,7 +235,7 @@ class Tank():
     specialMessage2_size = fnt4.getsize(specialMessage2)
     #specialMessage3_size = fnt5.getsize(specialMessage3)
 
-    screen_draw.text(((self.total_columns - specialMessage1_size[0]) /2,13),specialMessage1, fill = (150,255,0), font = fnt3)
+    screen_draw.text(((self.total_columns - specialMessage1_size[0]) /2,13),specialMessage1, fill = (255,150,255), font = fnt3)
     screen_draw.text(((self.total_columns - specialMessage2_size[0]) /2,30),specialMessage2, fill = (255,200,255), font = fnt4)
     #screen_draw.text(((self.total_columns - specialMessage3_size[0]) /2,50),specialMessage3, fill = (255,255,255), font = fnt5)
 
