@@ -204,7 +204,7 @@ class Tank():
     fnt = ImageFont.truetype("Arial_Bold.ttf",10)
     fnt2 = ImageFont.truetype("Arial_Bold.ttf",12)
     fnt3 = ImageFont.truetype("Arial_Bold.ttf",16)
-    fnt4 = ImageFont.truetype("Arial_Bold.ttf",20)
+    fnt4 = ImageFont.truetype("Arial_Bold.ttf",19)
     #convert to selected timezone and format date/time info
     currentDT = datetime.datetime.now(timezone('UTC'))
     currentDT_TZadjusted = currentDT.astimezone(timezone('US/Mountain'))
