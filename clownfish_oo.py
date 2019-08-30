@@ -267,10 +267,13 @@ clownfish2.setSlowdown(random.randint(0,4))
 seahorse.setSlowdown(random.randint(0,4))
 seaTurtle.setSlowdown(random.randint(0,2))
 dory.setSlowdown(random.randint(0,3))
+
 fish_tank.add_icon(seahorse)
 fish_tank.add_icon(clownfish)
+fish_tank.add_icon(dory)
 fish_tank.add_icon(seaTurtle)
 fish_tank.add_icon(clownfish2)
+
 
 try:
   print("Press CTRL-C to stop")
