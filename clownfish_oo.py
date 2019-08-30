@@ -230,14 +230,14 @@ class Tank():
     #special messages here
     specialMessage1 = ("Welcome to the")
     specialMessage2 = ("C.R.E.A.T.E LAB")
-    specialMessage3 = ("The Center for Engineering Artistry and Technological Expression")
+    #specialMessage3 = ("The Center for Engineering Artistry and Technological Expression")
     specialMessage1_size = fnt3.getsize(specialMessage1)
     specialMessage2_size = fnt4.getsize(specialMessage2)
-    specialMessage3_size = fnt5.getsize(specialMessage3)
+    #specialMessage3_size = fnt5.getsize(specialMessage3)
 
     screen_draw.text(((self.total_columns - specialMessage1_size[0]) /2,10),specialMessage1, fill = (0,255,0), font = fnt3)
     screen_draw.text(((self.total_columns - specialMessage2_size[0]) /2,30),specialMessage2, fill = (255,100,0), font = fnt4)
-    screen_draw.text(((self.total_columns - specialMessage3_size[0]) /2,50),specialMessage3, fill = (255,255,255), font = fnt5)
+    #screen_draw.text(((self.total_columns - specialMessage3_size[0]) /2,50),specialMessage3, fill = (255,255,255), font = fnt5)
 
 
     #write all changes to the screen
