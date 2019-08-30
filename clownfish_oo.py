@@ -227,8 +227,8 @@ class Tank():
     screen_draw.text((edge_offset_x + day_of_week_size[0] + text_spacing, self.total_rows - edge_offset_y),date_string, fill = (255,255,255), font = fnt)
 
     #special messages here
-    specialMessage1 ="Welcome to"
-    specialMessage2 ="Maker Workshop"
+    specialMessage1 = ("Welcome to")
+    specialMessage2 = ("Maker Workshop")
     specialMessage1_size = fnt2.getsize(specialMessage1)
     specialMEssage2_size = fnt3.getsize(specialMessage2)
 
