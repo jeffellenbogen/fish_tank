@@ -26,7 +26,7 @@ class Icon():
   #      pixels in our image, represented as a tuple.  Any pixel in that range 
   #      (inclusive) will be marked as transparent.
   ###############################################
-  def __init__(self, filename, rtr, gtr, btr, x_size, y_size, total_columns, total_rows):
+  def __init__(self, filename, rtr, gtr, btr, x_size, y_size, timeout_seconds, total_columns, total_rows):
   
     # top left corner of our image
     self.total_rows = total_rows
@@ -45,6 +45,7 @@ class Icon():
     self.slowdown = 1
     self.movecount = 1
     self.direction = 1
+    self.timeout = timeout_seconds
 
     # now that we have our image, we want to make a transparency mask.
     # start by looking at each pixel, and if it's in our transparency 
@@ -255,11 +256,11 @@ num_vert = 3
 fish_tank = Tank(matrix_rows, matrix_columns, num_horiz, num_vert)
 fish_tank.set_background("images/reef_bgrd_dark_bottom.jpg")
 
-clownfish = Icon("images/clownfish.jpg",(0,10),(150,255),(0,10),40,25,fish_tank.total_columns,fish_tank.total_rows)
-dory = Icon("images/dory.jpg",(0,10),(150,255),(0,10),28,20,fish_tank.total_columns,fish_tank.total_rows)
-seaTurtle = Icon("images/seaTurtle.jpg",(0,10),(0,10),(150,255),80,50,fish_tank.total_columns,fish_tank.total_rows)
-clownfish2 = Icon("images/clownfish.jpg",(0,10),(200,255),(0,10),32,20,fish_tank.total_columns,fish_tank.total_rows)
-seahorse = Icon("images/seahorse_red.png",(0,100),(100,255),(0,100),24,32,fish_tank.total_columns,fish_tank.total_rows)
+clownfish = Icon("images/clownfish.jpg",(0,10),(150,255),(0,10),40,25,5,fish_tank.total_columns,fish_tank.total_rows)
+dory = Icon("images/dory.jpg",(0,10),(150,255),(0,10),28,20,10, fish_tank.total_columns,fish_tank.total_rows)
+seaTurtle = Icon("images/seaTurtle.jpg",(0,10),(0,10),(150,255), 5,80,50,fish_tank.total_columns,fish_tank.total_rows)
+clownfish2 = Icon("images/clownfish.jpg",(0,10),(200,255),(0,10),32,20, 1, fish_tank.total_columns,fish_tank.total_rows)
+seahorse = Icon("images/seahorse_red.png",(0,100),(100,255),(0,100),24,32, 30, fish_tank.total_columns,fish_tank.total_rows)
 
 
 clownfish.setSlowdown(random.randint(0,2))
