@@ -118,7 +118,8 @@ class Icon():
     # if we're off the screen, reset to the right, and pick a new y coordinate.
     if ((self.x < 0-self.x_size) or (self.x > self.total_columns)):
       #choose direction
-      startTimout()
+      
+      startTimeout()
       directionChooser = random.randint(1,11)
       #direction is right
       if directionChooser % 2 == 0: 
