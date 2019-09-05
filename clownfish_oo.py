@@ -119,7 +119,7 @@ class Icon():
     if ((self.x < 0-self.x_size) or (self.x > self.total_columns)):
       #choose direction
       
-      startTimeout()
+      self.startTimeout()
       directionChooser = random.randint(1,11)
       #direction is right
       if directionChooser % 2 == 0: 
