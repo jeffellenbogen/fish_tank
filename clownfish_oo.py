@@ -2,6 +2,7 @@ from time import sleep
 import datetime
 from pytz import timezone
 import random
+import time
 
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
 from PIL import Image, ImageDraw, ImageFont
