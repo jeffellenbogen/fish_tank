@@ -256,11 +256,11 @@ num_vert = 3
 fish_tank = Tank(matrix_rows, matrix_columns, num_horiz, num_vert)
 fish_tank.set_background("images/reef_bgrd_dark_bottom.jpg")
 
-clownfish = Icon("images/clownfish.jpg",(0,10),(150,255),(0,10),40,25,5,fish_tank.total_columns,fish_tank.total_rows)
-dory = Icon("images/dory.jpg",(0,10),(150,255),(0,10),28,20,10, fish_tank.total_columns,fish_tank.total_rows)
-seaTurtle = Icon("images/seaTurtle.jpg",(0,10),(0,10),(150,255), 5,80,50,fish_tank.total_columns,fish_tank.total_rows)
-clownfish2 = Icon("images/clownfish.jpg",(0,10),(200,255),(0,10),32,20, 1, fish_tank.total_columns,fish_tank.total_rows)
-seahorse = Icon("images/seahorse_red.png",(0,100),(100,255),(0,100),24,32, 30, fish_tank.total_columns,fish_tank.total_rows)
+clownfish = Icon("images/clownfish.jpg",(0,10),(150,255),(0,10),40,25,2,fish_tank.total_columns,fish_tank.total_rows)
+dory = Icon("images/dory.jpg",(0,10),(150,255),(0,10),28,20,20,fish_tank.total_columns,fish_tank.total_rows)
+seaTurtle = Icon("images/seaTurtle.jpg",(0,10),(0,10),(150,255),80,50,30,fish_tank.total_columns,fish_tank.total_rows)
+clownfish2 = Icon("images/clownfish.jpg",(0,10),(200,255),(0,10),32,20,5,fish_tank.total_columns,fish_tank.total_rows)
+seahorse = Icon("images/seahorse_red.png",(0,100),(100,255),(0,100),24,32,15,fish_tank.total_columns,fish_tank.total_rows)
 
 
 clownfish.setSlowdown(random.randint(0,2))
