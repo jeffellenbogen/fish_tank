@@ -94,6 +94,14 @@ class Icon():
       tempimageFlipMask = tempimageMask.transpose(Image.FLIP_LEFT_RIGHT)
       image.paste(tempimageFlip,(self.x,self.y),tempimageFlipMask)
 
+  ###############################################
+  # startTimeout method 
+  ###############################################
+  def startTimeout(self):
+    elapsed_time = 0
+    last_reset = time.time()
+    while elapsed_time < self.timeout:
+      elapsed_time = time.time()-last_reset
 
   ############################################
   # move 
@@ -110,6 +118,7 @@ class Icon():
     # if we're off the screen, reset to the right, and pick a new y coordinate.
     if ((self.x < 0-self.x_size) or (self.x > self.total_columns)):
       #choose direction
+      self.startTimout()
       directionChooser = random.randint(1,11)
       #direction is right
       if directionChooser % 2 == 0: 
