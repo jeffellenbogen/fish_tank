@@ -43,6 +43,7 @@ class Icon():
     self.image = self.image.convert("RGBA")
     self.image = self.image.resize((x_size,y_size))
 
+    self.filename = filename
     self.slowdown = 1
     self.movecount = 1
     self.direction = 1
