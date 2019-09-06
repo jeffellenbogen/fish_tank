@@ -103,7 +103,7 @@ class Icon():
   ###############################################
   def startTimeout(self):
     self.timeoutStart = time.time()
-    print "timeout Started: "+str(self.filename)
+    print "timeout Started: "+str(self.filename) + " " +str(self.timeout) + "seconds"
 
   ###############################################
   # checkTimeout method 
