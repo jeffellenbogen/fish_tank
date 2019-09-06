@@ -1,7 +1,8 @@
-from time import sleep
+
 import datetime
 from pytz import timezone
 import random
+import time
 
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
 from PIL import Image, ImageDraw, ImageFont
@@ -26,7 +27,7 @@ class Icon():
   #      pixels in our image, represented as a tuple.  Any pixel in that range 
   #      (inclusive) will be marked as transparent.
   ###############################################
-  def __init__(self, filename, rtr, gtr, btr, x_size, y_size, total_columns, total_rows):
+  def __init__(self, filename, rtr, gtr, btr, x_size, y_size, timeout_seconds, total_columns, total_rows):
   
     # top left corner of our image
     self.total_rows = total_rows
@@ -42,9 +43,13 @@ class Icon():
     self.image = self.image.convert("RGBA")
     self.image = self.image.resize((x_size,y_size))
 
+    self.filename = filename
     self.slowdown = 1
     self.movecount = 1
     self.direction = 1
+    self.timeout = timeout_seconds
+    self.onScreen = True
+
 
     # now that we have our image, we want to make a transparency mask.
     # start by looking at each pixel, and if it's in our transparency 
@@ -93,6 +98,20 @@ class Icon():
       tempimageFlipMask = tempimageMask.transpose(Image.FLIP_LEFT_RIGHT)
       image.paste(tempimageFlip,(self.x,self.y),tempimageFlipMask)
 
+  ###############################################
+  # startTimeout method 
+  ###############################################
+  def startTimeout(self):
+    self.timeoutStart = time.time()
+    print "timeout Started: "+str(self.filename) + " " +str(self.timeout) + "seconds"
+
+  ###############################################
+  # checkTimeout method 
+  ###############################################
+  def checkTimeout(self):
+    currentTime = time.time()
+    if currentTime - self.timeoutStart > self.timeout:
+      self.onScreen = True
 
   ############################################
   # move 
@@ -102,33 +121,35 @@ class Icon():
   #     random y.  
   ###############################################
   def move(self):
-    if self.movecount < self.slowdown:
-      self.movecount += 1
-      return
-    
-    # if we're off the screen, reset to the right, and pick a new y coordinate.
-    if ((self.x < 0-self.x_size) or (self.x > self.total_columns)):
-      #choose direction
-      directionChooser = random.randint(1,11)
-      #direction is right
-      if directionChooser % 2 == 0: 
-        self.direction = 1
-        self.x = 0 - self.x_size
-      #direction is left  
-      else:
-        self.direction = -1
-        self.x = self.total_columns
-
+    if self.onScreen == False:
+      self.checkTimeout()
+    else:  
+      if self.movecount < self.slowdown:
+        self.movecount += 1
+        return
       
-      if self.y_size >= self.total_rows:
-        self.y = random.randint(0,self.total_rows)
-      else:
-        self.y = random.randint(0,self.total_rows - self.y_size)
+      # if we're off the screen, reset to the right, and pick a new y coordinate.
+      if ((self.x < 0-self.x_size) or (self.x > self.total_columns)):
+        self.onScreen = False
+        self.startTimeout()
+        directionChooser = random.randint(1,11)
+        #direction is right
+        if directionChooser % 2 == 0: 
+          self.direction = 1
+          self.x = 0 - self.x_size
+        #direction is left  
+        else:
+          self.direction = -1
+          self.x = self.total_columns
+        if self.y_size >= self.total_rows:
+          self.y = random.randint(0,self.total_rows)
+        else:
+          self.y = random.randint(0,self.total_rows - self.y_size)
 
-    # move one pixel left or right depending on direction. 1 -> Right, -1 -> Left
-    self.x = self.x + self.direction
-    # increment movecount for slowing down movement if a value is set for .setSlowdown
-    self.movecount = 1
+      # move one pixel left or right depending on direction. 1 -> Right, -1 -> Left
+      self.x = self.x + self.direction
+      # increment movecount for slowing down movement if a value is set for .setSlowdown
+      self.movecount = 1
 
 ###################################
 #  Tank class
@@ -255,11 +276,11 @@ num_vert = 3
 fish_tank = Tank(matrix_rows, matrix_columns, num_horiz, num_vert)
 fish_tank.set_background("images/reef_bgrd_dark_bottom.jpg")
 
-clownfish = Icon("images/clownfish.jpg",(0,10),(150,255),(0,10),40,25,fish_tank.total_columns,fish_tank.total_rows)
-dory = Icon("images/dory.jpg",(0,10),(150,255),(0,10),28,20,fish_tank.total_columns,fish_tank.total_rows)
-seaTurtle = Icon("images/seaTurtle.jpg",(0,10),(0,10),(150,255),80,50,fish_tank.total_columns,fish_tank.total_rows)
-clownfish2 = Icon("images/clownfish.jpg",(0,10),(200,255),(0,10),32,20,fish_tank.total_columns,fish_tank.total_rows)
-seahorse = Icon("images/seahorse_red.png",(0,100),(100,255),(0,100),24,32,fish_tank.total_columns,fish_tank.total_rows)
+clownfish = Icon("images/clownfish.jpg",(0,10),(150,255),(0,10),40,25,2,fish_tank.total_columns,fish_tank.total_rows)
+dory = Icon("images/dory.jpg",(0,10),(150,255),(0,10),28,20,20,fish_tank.total_columns,fish_tank.total_rows)
+seaTurtle = Icon("images/seaTurtle.jpg",(0,10),(0,10),(150,255),80,50,30,fish_tank.total_columns,fish_tank.total_rows)
+clownfish2 = Icon("images/clownfish.jpg",(0,10),(200,255),(0,10),32,20,5,fish_tank.total_columns,fish_tank.total_rows)
+seahorse = Icon("images/seahorse_red.png",(0,100),(100,255),(0,100),24,32,15,fish_tank.total_columns,fish_tank.total_rows)
 
 
 clownfish.setSlowdown(random.randint(0,2))
@@ -279,6 +300,6 @@ try:
   print("Press CTRL-C to stop")
   while True:
     fish_tank.show()
-    sleep(.02)
+    time.sleep(.02)
 except KeyboardInterrupt:
   exit(0)
