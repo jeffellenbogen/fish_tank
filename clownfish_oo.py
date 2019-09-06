@@ -47,6 +47,8 @@ class Icon():
     self.movecount = 1
     self.direction = 1
     self.timeout = timeout_seconds
+    self.onScreen = True
+
 
     # now that we have our image, we want to make a transparency mask.
     # start by looking at each pixel, and if it's in our transparency 
@@ -99,12 +101,16 @@ class Icon():
   # startTimeout method 
   ###############################################
   def startTimeout(self):
-    elapsed_time = 0
-    last_reset = time.time()
-    print "last_time: "+str(last_reset)
-    while elapsed_time < self.timeout:
-      elapsed_time = time.time()-last_reset
-      print ("elapsed_time: "+ str(elapsed_time))
+    self.timeoutStart = time.time()
+    print "timeout Started: "+str(filename)
+
+  ###############################################
+  # checkTimeout method 
+  ###############################################
+  def checkTimeout(self):
+    currentTime = time.time()
+    if currentTime - self.timeoutStart > self.timeout:
+      self.onScreen = True
 
   ############################################
   # move 
@@ -114,35 +120,35 @@ class Icon():
   #     random y.  
   ###############################################
   def move(self):
-    if self.movecount < self.slowdown:
-      self.movecount += 1
-      return
-    
-    # if we're off the screen, reset to the right, and pick a new y coordinate.
-    if ((self.x < 0-self.x_size) or (self.x > self.total_columns)):
-      #choose direction
+    if self.onScreen == False:
+      self.checkTimeout()
+    else:  
+      if self.movecount < self.slowdown:
+        self.movecount += 1
+        return
       
-      self.startTimeout()
-      directionChooser = random.randint(1,11)
-      #direction is right
-      if directionChooser % 2 == 0: 
-        self.direction = 1
-        self.x = 0 - self.x_size
-      #direction is left  
-      else:
-        self.direction = -1
-        self.x = self.total_columns
+      # if we're off the screen, reset to the right, and pick a new y coordinate.
+      if ((self.x < 0-self.x_size) or (self.x > self.total_columns)):
+        self.onScreen = False
+        self.startTimeout()
+        directionChooser = random.randint(1,11)
+        #direction is right
+        if directionChooser % 2 == 0: 
+          self.direction = 1
+          self.x = 0 - self.x_size
+        #direction is left  
+        else:
+          self.direction = -1
+          self.x = self.total_columns
+        if self.y_size >= self.total_rows:
+          self.y = random.randint(0,self.total_rows)
+        else:
+          self.y = random.randint(0,self.total_rows - self.y_size)
 
-      
-      if self.y_size >= self.total_rows:
-        self.y = random.randint(0,self.total_rows)
-      else:
-        self.y = random.randint(0,self.total_rows - self.y_size)
-
-    # move one pixel left or right depending on direction. 1 -> Right, -1 -> Left
-    self.x = self.x + self.direction
-    # increment movecount for slowing down movement if a value is set for .setSlowdown
-    self.movecount = 1
+      # move one pixel left or right depending on direction. 1 -> Right, -1 -> Left
+      self.x = self.x + self.direction
+      # increment movecount for slowing down movement if a value is set for .setSlowdown
+      self.movecount = 1
 
 ###################################
 #  Tank class
