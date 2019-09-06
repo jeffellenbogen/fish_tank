@@ -104,7 +104,7 @@ class Icon():
     print "last_time: "+str(last_reset)
     while elapsed_time < self.timeout:
       elapsed_time = time.time()-last_reset
-      print ("elapsed_time: "+elapsed_time)
+      print ("elapsed_time: "+ str(elapsed_time))
 
   ############################################
   # move 
