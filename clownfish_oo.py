@@ -1,4 +1,4 @@
-from time import sleep
+
 import datetime
 from pytz import timezone
 import random
@@ -101,8 +101,10 @@ class Icon():
   def startTimeout(self):
     elapsed_time = 0
     last_reset = time.time()
+    print ("last_time: "+last_reset)
     while elapsed_time < self.timeout:
       elapsed_time = time.time()-last_reset
+      print ("elapsed_time: "+elapsed_time)
 
   ############################################
   # move 
@@ -291,6 +293,6 @@ try:
   print("Press CTRL-C to stop")
   while True:
     fish_tank.show()
-    sleep(.02)
+    time.sleep(.02)
 except KeyboardInterrupt:
   exit(0)
