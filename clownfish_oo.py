@@ -101,7 +101,7 @@ class Icon():
   def startTimeout(self):
     elapsed_time = 0
     last_reset = time.time()
-    print ("last_time: "+last_reset)
+    print "last_time: "+str(last_reset)
     while elapsed_time < self.timeout:
       elapsed_time = time.time()-last_reset
       print ("elapsed_time: "+elapsed_time)
