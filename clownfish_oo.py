@@ -24,7 +24,11 @@ class Icon():
   # Init method 
   #   rtr, gtr, and btr are the transparency ranges for red, green, and blue 
   #      pixels in our image, represented as a tuple.  Any pixel in that range 
-  #      (inclusive) will be marked as transparent.
+  #      (inclusive) will be marked as transparent. 
+  # x_size is the horizonal size of the icon
+  # y_size is the vertical size of the icon
+  # timeout_seconds is the time an icons stays off screen before reseeding
+  # total_columns and total_rows are the size of the whole matrix
   ###############################################
   def __init__(self, filename, rtr, gtr, btr, x_size, y_size, timeout_seconds, total_columns, total_rows):
   
@@ -113,7 +117,8 @@ class Icon():
 
   ############################################
   # move 
-  #   Currenly only supports moving right-to-left.
+  #   Checks to see if icon is onScreen and if onScreen == False, it runs checkTimeout to
+  #      see if it is time to reseed yet.
   #   Updates our x and y position to the "next" spot.  
   #   If we go off the screen, we'll reset x, and pick a new
   #     random y.  
@@ -121,12 +126,13 @@ class Icon():
   def move(self):
     if self.onScreen == False:
       self.checkTimeout()
+      ## this else block allows different icons to move at a slower rate based on the .slowdown value
     else:  
       if self.movecount < self.slowdown:
         self.movecount += 1
         return
       
-      # if we're off the screen, reset to the right, and pick a new y coordinate.
+      # if we're off the screen, reset direction and appropriate side, and pick a new y coordinate.
       if ((self.x < 0-self.x_size) or (self.x > self.total_columns)):
         self.onScreen = False
         self.startTimeout()
@@ -222,6 +228,7 @@ class Tank():
     fnt3 = ImageFont.truetype("Arial_Bold.ttf",16)
     fnt4 = ImageFont.truetype("Arial_Bold.ttf",19)
     fnt5 = ImageFont.truetype("Arial_Bold.ttf",8)
+
     #convert to selected timezone and format date/time info
     currentDT = datetime.datetime.now(timezone('UTC'))
     currentDT_TZadjusted = currentDT.astimezone(timezone('US/Mountain'))
@@ -230,6 +237,7 @@ class Tank():
     date_string = currentDT_TZadjusted.strftime("%B %d, %Y")
     seconds = int(currentDT_TZadjusted.strftime("%S"))
     
+    #determine size of the various text strings using .getsize so that we can center them
     time_size = fnt2.getsize(time_string)
     day_of_week_size = fnt.getsize(day_of_week)
     date_string_size = fnt.getsize(date_string)
@@ -266,31 +274,46 @@ matrix_columns = 32
 num_horiz = 5
 num_vert = 3
 
+#create an instance of the Tank class and set it to a specific background image
 fish_tank = Tank(matrix_rows, matrix_columns, num_horiz, num_vert)
 fish_tank.set_background("images/reef_bgrd_dark_bottom.jpg")
 
+#create as many instances of the Icon class as needed
 clownfish = Icon("images/clownfish.jpg",(0,10),(150,255),(0,10),40,25,2,fish_tank.total_columns,fish_tank.total_rows)
+clownfish2 = Icon("images/clownfish.jpg",(0,10),(200,255),(0,10),32,20,5,fish_tank.total_columns,fish_tank.total_rows)
+clownfish3 = Icon("images/clownfish.jpg",(0,10),(200,255),(0,10),16,10,0,fish_tank.total_columns,fish_tank.total_rows)
 dory = Icon("images/dory.jpg",(0,10),(150,255),(0,10),28,20,20,fish_tank.total_columns,fish_tank.total_rows)
 seaTurtle = Icon("images/seaTurtle.jpg",(0,10),(0,10),(150,255),80,50,30,fish_tank.total_columns,fish_tank.total_rows)
-clownfish2 = Icon("images/clownfish.jpg",(0,10),(200,255),(0,10),32,20,5,fish_tank.total_columns,fish_tank.total_rows)
 seahorse = Icon("images/seahorse_red.png",(0,100),(100,255),(0,100),24,32,15,fish_tank.total_columns,fish_tank.total_rows)
+parrotfish = Icon("images/parrotfish.jpg",(0,100),(100,255),(0,100),25,15,10,fish_tank.total_columns,fish_tank.total_rows)
+redBloodParrot = Icon("images/red-blood-parrot.jpg",(0,100),(100,255),(0,100),25,18,5,fish_tank.total_columns,fish_tank.total_rows)
 
+
+#set the slowdown rate via the .setSlowdown method of the Icon class
 clownfish.setSlowdown(random.randint(0,2))
 clownfish2.setSlowdown(random.randint(0,4))
+clownfish3.setSlowdown(0)
 seahorse.setSlowdown(random.randint(0,4))
 seaTurtle.setSlowdown(random.randint(0,2))
 dory.setSlowdown(random.randint(0,3))
 
+#add each of the icon instances to the tank, the order these are added determines their relationship
+# in the taknk from back to front. Last one added is closer to the front of the tank
 fish_tank.add_icon(seahorse)
 fish_tank.add_icon(clownfish)
 fish_tank.add_icon(dory)
 fish_tank.add_icon(seaTurtle)
 fish_tank.add_icon(clownfish2)
+fish_tank.add_icon(parrotfish)
+fish_tank.add_icon(redBloodParrot)
+fish_tank.add_icon(clownfish3)
 
 try:
   print("Press CTRL-C to stop")
   while True:
     fish_tank.show()
+    #the parameter below in time.sleep controls the overall rate of the whole tank and speed of
+    #   icons with no slowdown
     time.sleep(.02)
 except KeyboardInterrupt:
   exit(0)
