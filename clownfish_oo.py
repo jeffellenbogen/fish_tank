@@ -50,7 +50,6 @@ class Icon():
     self.timeout = timeout_seconds
     self.onScreen = True
 
-
     # now that we have our image, we want to make a transparency mask.
     # start by looking at each pixel, and if it's in our transparency 
     # range, make the mask transparent (black).  Otherwise, make it 
@@ -177,10 +176,8 @@ class Tank():
     #options.gpio_slowdown = 2
 
     self.matrix = RGBMatrix(options = options)
-
     self.background = None
     self.icons = []
-
     self.screen = Image.new("RGBA",(self.total_columns,self.total_rows))
 
   ############################################
@@ -213,7 +210,6 @@ class Tank():
 
     self.screen = self.screen.convert("RGB")
     screen_draw = ImageDraw.Draw(self.screen)
-
 
     ################################################
     # Date and time formatting and postioning
@@ -260,10 +256,8 @@ class Tank():
     screen_draw.text(((self.total_columns - specialMessage2_size[0]) /2,30),specialMessage2, fill = (255,150,200), font = fnt4)
     #screen_draw.text(((self.total_columns - specialMessage3_size[0]) /2,50),specialMessage3, fill = (255,255,255), font = fnt5)
 
-
     #write all changes to the screen
     self.matrix.SetImage(self.screen,0,0)
-
 
 ###################################
 # Main code 
@@ -282,7 +276,6 @@ seaTurtle = Icon("images/seaTurtle.jpg",(0,10),(0,10),(150,255),80,50,30,fish_ta
 clownfish2 = Icon("images/clownfish.jpg",(0,10),(200,255),(0,10),32,20,5,fish_tank.total_columns,fish_tank.total_rows)
 seahorse = Icon("images/seahorse_red.png",(0,100),(100,255),(0,100),24,32,15,fish_tank.total_columns,fish_tank.total_rows)
 
-
 clownfish.setSlowdown(random.randint(0,2))
 clownfish2.setSlowdown(random.randint(0,4))
 seahorse.setSlowdown(random.randint(0,4))
@@ -294,7 +287,6 @@ fish_tank.add_icon(clownfish)
 fish_tank.add_icon(dory)
 fish_tank.add_icon(seaTurtle)
 fish_tank.add_icon(clownfish2)
-
 
 try:
   print("Press CTRL-C to stop")
