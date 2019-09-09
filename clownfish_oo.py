@@ -202,7 +202,6 @@ class Tank():
   #   Displays the whole tank, and then moves any icon elements. 
   ###############################################
   def show(self):
-     
     #restore background
     self.screen.paste(self.background,(0,0))
     
