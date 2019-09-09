@@ -45,12 +45,12 @@ fnt2 = ImageFont.truetype("Arial_Bold.ttf",20)
 fnt3 = ImageFont.truetype("Arial_Bold.ttf",16)
 
 
-background = Image.open("images/andr_small.jpeg")
+background = Image.open("images/tanks/andr_small.jpeg")
 background.convert("RGBA")
 background = background.resize((total_columns,total_rows))
 
 icon_size = 40
-icon_image = Image.open("images/tie-fighter-01.jpg")
+icon_image = Image.open("images/icons/tie-fighter-01.jpg")
 icon_image = icon_image.convert("RGBA")
 icon_image = icon_image.resize((icon_size,icon_size))
 icon_x = total_columns
@@ -58,7 +58,7 @@ icon_y = random.randint(0,total_rows-icon_size)
 
 falcon_imageWidth = 102
 falcon_imageHeight = 50
-falcon_image = Image.open("images/Millennium-Falcon.png")
+falcon_image = Image.open("images/icons/Millennium-Falcon.png")
 falcon_image = falcon_image.convert("RGBA")
 falcon_image = falcon_image.resize((falcon_imageWidth,falcon_imageHeight))
 falcon_x = - falcon_imageWidth
