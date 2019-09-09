@@ -273,7 +273,7 @@ num_vert = 3
 
 #create an instance of the Tank class and set it to a specific background image
 fish_tank = Tank(matrix_rows, matrix_columns, num_horiz, num_vert)
-tankChooser = random.randint(1,4)
+tankChooser = random.randint(1,3)
 if tankChooser == 1:
   fish_tank.set_background("images/reef_bgrd_dark_bottom.jpg")
 elif tankChooser == 2:
