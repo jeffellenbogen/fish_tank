@@ -275,21 +275,21 @@ num_vert = 3
 fish_tank = Tank(matrix_rows, matrix_columns, num_horiz, num_vert)
 tankChooser = random.randint(1,3)
 if tankChooser == 1:
-  fish_tank.set_background("images/reef_bgrd_dark_bottom.jpg")
+  fish_tank.set_background("images/tanks/reef_bgrd_dark_bottom.jpg")
 elif tankChooser == 2:
-  fish_tank.set_background("images/caribbean-coral-reef.jpg")
+  fish_tank.set_background("images/tanks/caribbean-coral-reef.jpg")
 else:
-  fish_tank.set_background("images/coral_tank.jpg")
+  fish_tank.set_background("images/tanks/coral_tank.jpg")
 
 #create as many instances of the Icon class as needed
-clownfish = Icon("images/clownfish.jpg",(0,10),(150,255),(0,10),40,25,2,fish_tank.total_columns,fish_tank.total_rows)
-clownfish2 = Icon("images/clownfish.jpg",(0,10),(200,255),(0,10),32,20,5,fish_tank.total_columns,fish_tank.total_rows)
-clownfish3 = Icon("images/clownfish.jpg",(0,10),(200,255),(0,10),16,10,0,fish_tank.total_columns,fish_tank.total_rows)
-dory = Icon("images/dory.jpg",(0,10),(150,255),(0,10),28,20,20,fish_tank.total_columns,fish_tank.total_rows)
-seaTurtle = Icon("images/seaTurtle.jpg",(0,10),(0,10),(150,255),80,50,30,fish_tank.total_columns,fish_tank.total_rows)
-seahorse = Icon("images/seahorse_red.png",(0,100),(100,255),(0,100),24,32,15,fish_tank.total_columns,fish_tank.total_rows)
-parrotfish = Icon("images/parrotfish.jpg",(0,100),(100,255),(0,100),25,15,10,fish_tank.total_columns,fish_tank.total_rows)
-redBloodParrot = Icon("images/red-blood-parrot.jpg",(0,100),(100,255),(0,100),25,18,5,fish_tank.total_columns,fish_tank.total_rows)
+clownfish = Icon("images/icons/clownfish.jpg",(0,10),(150,255),(0,10),40,25,2,fish_tank.total_columns,fish_tank.total_rows)
+clownfish2 = Icon("images/icons/clownfish.jpg",(0,10),(200,255),(0,10),32,20,5,fish_tank.total_columns,fish_tank.total_rows)
+clownfish3 = Icon("images/icons/clownfish.jpg",(0,10),(200,255),(0,10),16,10,0,fish_tank.total_columns,fish_tank.total_rows)
+dory = Icon("images/icons/dory.jpg",(0,10),(150,255),(0,10),28,20,20,fish_tank.total_columns,fish_tank.total_rows)
+seaTurtle = Icon("images/icons/seaTurtle.jpg",(0,10),(0,10),(150,255),80,50,30,fish_tank.total_columns,fish_tank.total_rows)
+seahorse = Icon("images/icons/seahorse_red.png",(0,100),(100,255),(0,100),24,32,15,fish_tank.total_columns,fish_tank.total_rows)
+parrotfish = Icon("images/icons/parrotfish.jpg",(0,100),(100,255),(0,100),25,15,10,fish_tank.total_columns,fish_tank.total_rows)
+redBloodParrot = Icon("images/icons/red-blood-parrot.jpg",(0,100),(100,255),(0,100),25,18,5,fish_tank.total_columns,fish_tank.total_rows)
 
 
 #set the slowdown rate via the .setSlowdown method of the Icon class
