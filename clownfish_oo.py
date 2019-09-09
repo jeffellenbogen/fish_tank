@@ -76,14 +76,12 @@ class Icon():
   ###############################################
   # setSlowdown method 
   ###############################################
-  
   def setSlowdown(self,slowdown):
     self.slowdown = slowdown
   
   ###############################################
   # setDirection method 
   ###############################################
-  
   def setDirection(self,direction):
     self.direction = direction
   
